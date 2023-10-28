@@ -1,0 +1,167 @@
+.SearchBar {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  //z-index: 2;
+
+  div {
+    width: clamp(90%, 80%, 95%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      align-items: center;
+
+      input {
+        width: clamp(550px, 600px, 700px);
+        height: 40px;
+        padding: 15px 20px;
+        outline: none;
+        border-radius: 3px 0 0 3px;
+        border: 1px solid black;
+
+
+        &::placeholder {
+          font-size: 14px;
+          font-weight: 300;
+          letter-spacing: 2px;
+          text-transform: capitalize;
+        }
+      }
+
+      button {
+        border: 1px solid black;
+        border-radius: 0px 3px 3px 0;
+        background-color: white;
+        padding: 10px 15px;
+        height: 40px;
+        border-left: none;
+
+      }
+    }
+
+    section {
+      display: flex;
+      align-items: center;
+
+      a {
+        margin-right: 10px;
+        width: 30px;
+
+      }
+
+      button {
+        display: none;
+        padding: 10px 13px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1150px) {
+  .SearchBar {
+    div {
+      width: 800px;
+      background-color: red;
+
+      input {
+        width: 500px !important;
+      }
+
+
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .SearchBar {
+    div {
+      width: 750px;
+      background-color: red;
+      input {
+        width: 500px !important;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+  .SearchBar {
+    div {
+      width: 900px;
+      background-color: red;
+
+      input {
+        width: 450px !important;
+      }
+
+      section{
+        button{
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .SearchBar {
+    div {
+      width: 780px;
+      background-color: red;
+
+      input {
+        width: 450px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .SearchBar {
+    div {
+      width: 650px;
+      background-color: red;
+
+      input {
+        width: 450px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .SearchBar {
+    div {
+      width: 550px;
+      background-color: red;
+
+      input {
+        width: 300px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .SearchBar {
+    div {
+      width: 500px;
+      background-color: red;
+
+      input {
+        width: 300px !important;
+      }
+    }
+  }
+}
