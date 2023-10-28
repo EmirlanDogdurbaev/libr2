@@ -11,16 +11,18 @@ const Layout = ({children}) => {
         setNavbar(!navbar)
     }
 
-    console.log(navbar)
-    return <div className={styles.main}>
-        <Nav stateClassName={navbar}/>
-        <div className={styles.rightContainer}>
-            <SearchBar toggleClassName={toggle}/>
-            <section>
-                {children}
-            </section>
+    return (
+        <div className={styles.main}>
+            <Nav stateClassName={navbar}/>
+
+            <div className={styles.rightContainer}>
+                <SearchBar toggleClassName={toggle}/>
+                <section>
+                    {children}
+                </section>
+            </div>
         </div>
-    </div>
+    )
 }
 
 export default Layout;
