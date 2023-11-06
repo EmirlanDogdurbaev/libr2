@@ -1,0 +1,29 @@
+.wrap{
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 25px 5px #e5e5e5;
+
+    .first{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        gap: 20px;
+        span{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            p{
+                color: gray;
+            }
+            h2{
+                color: rgb(75, 74, 74);
+            }
+        }
+    }
+}
