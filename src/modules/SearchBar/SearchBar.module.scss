@@ -4,7 +4,6 @@
   height: 80px;
   width: 100%;
   background-color: #fff;
-  //z-index: 2;
 
   >div {
     width: clamp(90%, 80%, 95%);
@@ -12,15 +11,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 
-    span {
+    form {
       display: flex;
       align-items: center;
 
       input {
         width: clamp(550px, 600px, 700px);
         height: 40px;
-        padding: 15px 20px;
+        padding: 10px 20px;
         outline: none;
         border-radius: 3px 0 0 3px;
         border: 1px solid #787878;
@@ -42,7 +42,7 @@
         padding: 10px 15px;
         height: 40px;
         border-left: none;
-
+        cursor: pointer;
       }
     }
 
