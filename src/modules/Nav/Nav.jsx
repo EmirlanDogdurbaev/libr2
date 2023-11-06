@@ -14,7 +14,7 @@ const Nav = (props) => {
     return <nav className={navClass}>
         <Logo/>
         <ul>
-            <li><NavItem to={"/home"}> <img src={icon1} alt=""/> home</NavItem></li>
+            <li><NavItem to={"/jhg"}> <img src={icon1} alt=""/> home</NavItem></li>
             <li><NavItem to={"/profile"}> <img src={icon1} alt=""/> profile</NavItem></li>
             <li><NavItem to={"/catalog"}> <img src={icon1} alt=""/> catalog</NavItem></li>
             <li><NavItem to={"/basket"}> <img src={icon1} alt=""/>basket</NavItem></li>
