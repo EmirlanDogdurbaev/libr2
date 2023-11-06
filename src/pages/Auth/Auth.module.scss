@@ -1,0 +1,24 @@
+.Auth{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label{
+    color: #787878;
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  input{
+    border: 1px solid #787878;
+    border-radius: 10px;
+    height: 40px;
+  }
+  button{
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  a{
+    color: #787878;
+    font-size: 12px;
+  }
+}

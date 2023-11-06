@@ -1,0 +1,23 @@
+.AuthForm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100vh;
+  background-color: #eff7fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > div {
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 130px;
+    border-radius: 10px;
+  }
+}
