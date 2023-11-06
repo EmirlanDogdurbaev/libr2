@@ -13,6 +13,7 @@ export default class Store {
     try {
       const response = await axios.post(`${api}/login/`, { email, password });
       localStorage.setItem("token", response.data.access_token);
+      console.log(response.data.access_token);
     } catch (e) {
       console.error(e);
     }
