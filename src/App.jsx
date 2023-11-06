@@ -8,16 +8,16 @@ import Login from "./pages/Login/Login";
 function App() {
   return (
     <Layout>
-      {localStorage.getItem("token") ? (
-        <Routes>
-          <Route index path={"/home"} element={<Home />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Routes path="*" element={<Redirect />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      )}
+      <Routes>
+        {localStorage.getItem("token") ? (
+          <Route index element={<Home />} />
+        ) : (
+          <>
+            <Route path="*" element={<Redirect />} />
+            <Route path="/login" element={<Login />} />
+          </>
+        )}
+      </Routes>
     </Layout>
   );
 }
