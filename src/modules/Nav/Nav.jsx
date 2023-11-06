@@ -1,5 +1,4 @@
 import NavItem from "./NavItem/NavItem.jsx";
-import {Link} from "react-router-dom";
 import styles from "./Nav.module.scss"
 import Logo from "../../components/UI/Logo/Logo.jsx";
 import icon1 from "../../assets/icons/home.svg"

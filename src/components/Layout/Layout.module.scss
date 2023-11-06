@@ -3,10 +3,18 @@
   display: flex;
   width: 100%;
 
+
   .rightContainer {
     display: flex;
     flex-direction: column;
-   width: 100%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    section {
+      overflow-y: scroll;
+    }
   }
 
 }
