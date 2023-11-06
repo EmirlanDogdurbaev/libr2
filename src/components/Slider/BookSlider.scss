@@ -1,5 +1,5 @@
 .swiper {
-  width: 800px;
+  width: 700px;
   height: 100%;
   margin: 20px 0;
   overflow: visible;
@@ -8,13 +8,10 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  width: 350px !important;
+  margin: 0 !important;
 }
 
 .swiper-slide img {
@@ -28,4 +25,5 @@
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
+  margin: 0px 0px 40px 0px;
 }
