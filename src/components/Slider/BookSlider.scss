@@ -11,7 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 !important;
+  width: 400px !important;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(128, 128, 128, 0.325);
 }
 
 .swiper-slide img {

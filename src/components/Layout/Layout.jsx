@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
 
       <div className={styles.rightContainer}>
         <SearchBar toggleClassName={toggle} />
-        {children}
+        <section>{children}</section>
       </div>
     </div>
   );
