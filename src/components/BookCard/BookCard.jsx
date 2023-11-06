@@ -3,6 +3,7 @@ import classes from './BookCard.module.scss';
 import star from '../../assets/icons/star.svg';
 import empt from '../../assets/icons/empty.svg';
 import { Link } from 'react-router-dom';
+
 export default function BookCard({ data }) {
   const stars = new Array(Math.min(data.rating, 5)).fill('');
   const empty = new Array(5 - Math.min(data.rating, 5)).fill('');
