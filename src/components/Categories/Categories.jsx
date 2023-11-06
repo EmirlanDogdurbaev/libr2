@@ -1,21 +1,30 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { api } from '../../store/api'
-import classes from './Categories.module.scss'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { api } from "../../store/api";
+import classes from "./Categories.module.scss";
+import CategoryItem from "./CategoryItem";
 export default function Categories() {
   const [categories, setCategories] = useState([]);
-  useEffect(()=>{
-    axios.get(api+'/list/category').then((res)=>{
-      setCategories(res.data)
-    })
-  },[])
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    axios.get(api + "/list/category").then((res) => {
+      setCategories(res.data);
+    });
+  }, []);
   return (
     <div className={classes.Categories}>
-      {categories.map((item)=>{
-        return<div>
-          {item.title}
-        </div>
+      {categories.map((item, id) => {
+        return (
+          <div
+            key={id}
+            onClick={() => setActive(item.title)}
+            className={active === item.title ? classes.active : null}
+          >
+            {item.title}
+          </div>
+        );
       })}
     </div>
-  )
+  );
 }
