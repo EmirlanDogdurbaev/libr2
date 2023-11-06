@@ -6,7 +6,7 @@
   border-bottom: 1px solid black;
   //z-index: 2;
 
-  div {
+  >div {
     width: clamp(90%, 80%, 95%);
     margin: 0 auto;
     display: flex;
