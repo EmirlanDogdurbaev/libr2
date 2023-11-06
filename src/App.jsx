@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import AuthForm from "./components/AuthForm/AuthForm.jsx";
 import Login from "./pages/Auth/Login.jsx";
 import Register from "./pages/Auth/Register.jsx";
+import Catalog from "./pages/Catalog/Catalog.jsx";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Layout>
           <Routes>
             <Route index element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
           </Routes>
         </Layout>
       ) : (
