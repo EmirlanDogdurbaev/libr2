@@ -1,20 +1,30 @@
 .Home {
-  height: 100%;
+  height: 90vh;
   width: 100%;
+  overflow-y: scroll !important;
 
   .image {
     width: 100%;
-    height: 350px ;
+    height: 65vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 
-    background-size: cover;
-    background-image: url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg");
+    // background-size: cover;
+    // background-image: url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg");
 
-    h1{
+    h1 {
       color: white;
       font-size: 32px;
+    }
+  }
+
+  .test {
+    display: flex;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid;
     }
   }
 }
