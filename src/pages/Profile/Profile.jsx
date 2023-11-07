@@ -15,13 +15,11 @@ function Profile() {
       console.log(e);
     }
   }
-  
 
   useEffect(() => {
     profileBooks();
-    setUser(JSON.parse(localStorage.getItem('user')))
+    setUser(JSON.parse(localStorage.getItem('user')));
   }, []);
-
 
   return (
     <div className={classes.wrap}>
@@ -32,7 +30,10 @@ function Profile() {
           width="60px"
           height="60px"
         />
-        <h3>{user.name}</h3>
+        <h3>
+          {user.first_name}
+          {user.last_name}
+        </h3>
         <p className={classes.blue}>{user.group}</p>
         <p>{user.email}</p>
         <button className={classes.btn} type="submit">
