@@ -2,29 +2,45 @@
   height: 90vh;
   width: 100%;
   overflow-y: scroll !important;
+  // overflow-x: hidden;
 
-  .image {
+  .scroll_cont {
     width: 100%;
-    height: 65vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
 
-    // background-size: cover;
-    // background-image: url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg");
+    > main {
+      > section {
+        height: 350px;
+        width: 100%;
+        background-size: cover;
+        background-image: url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg");
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    h1 {
-      color: white;
-      font-size: 32px;
+        > h1 {
+          color: white;
+          font-size: 42px;
+        }
+      }
     }
   }
 
-  .test {
-    display: flex;
+  .cards_slider_cont {
+    gap: 20px;
+    padding: 20px;
+    height: 500px;
 
-    article {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid;
-    }
+
+
+      h1 {
+        font-size: 33px;
+        width: 250px;
+        margin-left: 30px;
+
+      }
+    
   }
 }

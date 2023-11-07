@@ -1,274 +1,42 @@
+import Slider from "../../components/Slider/Slider";
 import styles from "./Home.module.scss";
 
 const Home = () => {
   return (
     <div className={styles.Home}>
-      <section className={styles.image}>
+      <section className={styles.scroll_cont}>
         <main>
           <section>
-            <img
-              src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
-              alt=""
-            />
+            <h1>Welcome to library INAI</h1>
           </section>
         </main>
 
-        <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
+       
+       
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
         </div>
-        <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
         </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+
+    
+        
       </section>
-      <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div> <div className={styles.test}>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-          <article>
-            <h3>Lorem, ipsum.</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              doloribus officiis incidunt? Aut cumque cum laboriosam, atque
-              praesentium dolores? Dolor esse consequuntur sed assumenda maxime
-              ut nisi ad, sunt dolorum.
-            </p>
-          </article>
-        </div>
     </div>
   );
 };
