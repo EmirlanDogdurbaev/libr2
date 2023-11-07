@@ -11,10 +11,31 @@ const Home = () => {
           </section>
         </main>
 
+       
+       
         <div className={styles.cards_slider_cont}>
           <h1>Books</h1>
           <Slider />
         </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+        <div className={styles.cards_slider_cont}>
+          <h1>Books</h1>
+          <Slider />
+        </div>
+
+    
+        
       </section>
     </div>
   );
