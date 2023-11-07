@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './BookCard.module.scss'
 export default function BookCard({data}) {
-  // console.log(data.rating);
   const stars = new Array(data.rating).fill('')
   const empty = new Array(5 - data.rating).fill('') 
   return (

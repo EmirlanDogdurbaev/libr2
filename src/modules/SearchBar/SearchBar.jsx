@@ -23,8 +23,8 @@ const SearchBar = (props) => {
           <button>search</button>
         </span>
         
-      <Select options={date} />
-      <Select options={popularity} />
+      <Select placeholder={"По дате"} options={date} />
+      <Select placeholder={"По популярности"} options={popularity} />
         <section>
             
           <Link to={"/reg"}>
