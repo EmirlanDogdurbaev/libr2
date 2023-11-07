@@ -17,6 +17,11 @@ export default function Catalog() {
     <div>
       <Categories />
       <Slider books={data}/>
+      <Slider books={data}/>
+      <Slider books={data}/>
+      <Slider books={data}/> <Slider books={data}/>
+      <Slider books={data}/>
+      <Slider books={data}/> <Slider books={data}/>
     </div>
   );
 }
