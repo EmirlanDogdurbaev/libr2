@@ -26,7 +26,7 @@ function Slider({books}) {
         className="mySwiper"
       >
         {books.map((item)=>{
-          return <SwiperSlide>
+          return <SwiperSlide key={item.id}>
           <BookCard data={item}/>
         </SwiperSlide>
         })}
