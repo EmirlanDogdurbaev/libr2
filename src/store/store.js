@@ -9,6 +9,11 @@ export default class Store {
   checkAuth() {
     return localStorage.getItem("token");
   }
+  category = ''
+
+  setCategory(category) {
+    this.category = category
+  }
   async login(email, password) {
     try {
       const response = await axios.post(`${api}/login/`, { email, password });
