@@ -7,11 +7,11 @@ export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [active, setActive] = useState("");
 
-  useEffect(() => {
-    axios.get(api + "/list/category").then((res) => {
-      setCategories(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(api + "/list/category", {Authorization:`Bearer ${localStorage.getItem("token")}`}).then((res) => {
+  //     setCategories(res.data);
+  //   });
+  // }, []);
   return (
     <div className={classes.Categories}>
       {categories.map((item, id) => {
