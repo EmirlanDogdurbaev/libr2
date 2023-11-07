@@ -13,11 +13,12 @@ export default function Catalog() {
     quantity: 16,
     image:'https://m.media-amazon.com/images/I/61vF8FZqacL._AC_UF1000,1000_QL80_.jpg'
   });
-  // useEffect(()=>{
-  //   axios.get(api+'/change/book/1/').then((res)=>{
-  //     setData(res.data)
-  //   })
-  //   }, [])
+  useEffect(()=>{
+    
+    axios.get(api+'/change/book/1/').then((res)=>{
+      setData(res.data)
+    })
+    }, [])
   return (
     <div>
       <Categories />
