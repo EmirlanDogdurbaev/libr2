@@ -8,6 +8,7 @@ import Login from './pages/Auth/Login.jsx';
 import Register from './pages/Auth/Register.jsx';
 import Catalog from './pages/Catalog/Catalog.jsx';
 import Profile from './pages/Profile/Profile.jsx';
+import Book from './pages/Book/Book.jsx';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/book/:id" element={<Book />} />
           </Routes>
         </Layout>
       ) : (
