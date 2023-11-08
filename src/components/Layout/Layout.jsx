@@ -13,7 +13,6 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.main}>
       <Nav stateClassName={navbar} />
-
       <div className={styles.rightContainer}>
         <SearchBar toggleClassName={toggle} />
         <section>{children}</section>
