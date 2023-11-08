@@ -52,7 +52,7 @@ function Profile() {
       </div>
       <div className={classes.second}>
         {books.map((data) => {
-          return <ProfileBookCard data={data} />;
+          return <ProfileBookCard data={data} key={data.id} />;
         })}
       </div>
     </div>

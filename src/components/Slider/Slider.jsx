@@ -1,10 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 
-import './BookSlider.scss';
-import { Pagination } from 'swiper/modules';
-import BookCard from '../BookCard/BookCard';
+import "./BookSlider.scss";
+import { Pagination } from "swiper/modules";
+import BookCard from "../BookCard/BookCard";
 
 function Slider({ books }) {
   return (
@@ -16,7 +16,8 @@ function Slider({ books }) {
         grabCursor={true}
         navigation={true}
         modules={[Pagination]}
-        className="mySwiper">
+        className="mySwiper"
+      >
         {books.map((item) => {
           return (
             <SwiperSlide key={item.id}>
