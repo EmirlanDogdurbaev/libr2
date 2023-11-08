@@ -6,6 +6,7 @@ import { api } from "../../store/api";
 import Slider from "../../components/Slider/Slider";
 import { Context } from "../../main";
 import { observer } from "mobx-react-lite";
+import Comment from "../../components/Comment/Comment";
 
  function Catalog() {
   const [data, setData] = useState([]);
@@ -26,6 +27,7 @@ import { observer } from "mobx-react-lite";
     <div>
       <Categories />
       <Slider books={data} />
+      <Comment/>
     </div>
   );
 }
