@@ -15,24 +15,13 @@ function Profile() {
       console.log(e);
     }
   }
-  async function userData() {
-    try {
-      const res = await axios.get(api + '/register/');
-      setUser(res.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  
 
   useEffect(() => {
     profileBooks();
-    userData();
+    setUser(JSON.parse(localStorage.getItem('user')))
   }, []);
-  const userr = {
-    name: 'Sam Rustam',
-    group: 'MIN-1-22',
-    email: 'rustam.samsaev@gmail.com',
-  };
+
 
   return (
     <div className={classes.wrap}>
@@ -43,9 +32,9 @@ function Profile() {
           width="60px"
           height="60px"
         />
-        <h3>{userr.name}</h3>
-        <p className={classes.blue}>{userr.group}</p>
-        <p>{userr.email}</p>
+        <h3>{user.name}</h3>
+        <p className={classes.blue}>{user.group}</p>
+        <p>{user.email}</p>
         <button className={classes.btn} type="submit">
           LogOut
         </button>

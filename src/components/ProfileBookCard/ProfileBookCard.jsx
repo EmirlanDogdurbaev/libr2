@@ -7,7 +7,7 @@ function ProfileBookCard({ data }) {
   const stars = new Array(Math.min(data.rating, 5)).fill('');
   const empty = new Array(5 - Math.min(data.rating, 5)).fill('');
 
-  console.log(data);
+  // console.log(data);
   const book = {
     date: '21.04.2023',
     time: '8 days',

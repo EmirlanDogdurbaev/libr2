@@ -33,9 +33,15 @@ export default class Store {
         phone,
       });
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem('user', JSON.stringify({
+        email,
+        first_name,
+        last_name,
+        phone,
+      }))
 
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
     }
   }
 }
