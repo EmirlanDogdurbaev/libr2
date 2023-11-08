@@ -27,7 +27,7 @@ import Comment from "../../components/Comment/Comment";
     <div>
       <Categories />
       <Slider books={data} />
-      <Comment/>
+  
     </div>
   );
 }
