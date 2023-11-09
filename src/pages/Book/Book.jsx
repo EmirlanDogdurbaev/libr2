@@ -8,8 +8,8 @@ import Stars from "../../components/Stars/Stars";
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
-  const maxChars = 250; 
-  console.log(typeof book.rating);
+  const maxChars = 1000;
+ 
 
   async function fetchBook() {
     try {
@@ -34,15 +34,17 @@ export default function Book() {
   return (
     <div className={cl.Book}>
       <section>
-        <article className={cl.BookInfo}>
+        <article className={cl.BookInfo} >
           <img src={book.image} alt="" />
           <div className={cl.text}>
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
-            <p>
-              {book.description && book.description.length > 450
+            <p id="content">
+              {/* {book.description && book.description.length > 450
                 ? `${rezka}...`
-                : rezka}
+                : rezka} */}
+
+                {book.description}
             </p>
           </div>
           <div className={cl.rating}>
