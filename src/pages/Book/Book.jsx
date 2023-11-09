@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../store/api";
 import cl from './Book.module.scss'
+import Stars from "../../components/Stars/Stars";
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
+  console.log(typeof(book.rating));
   async function fetchBook() {
     try {
       const res = await axios.get(api + "/change/book/" + params.id + "/", {
@@ -35,6 +37,10 @@ export default function Book() {
           </div>
           <div className={cl.rating}>
             <h3>{book.rating}</h3>
+            <div>
+              
+            <Stars amount={book.rating} book={book} />
+            </div>
             <div>
               <small>В наличии: 3</small>
               <button>Заказать</button>

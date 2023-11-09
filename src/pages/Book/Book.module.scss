@@ -1,4 +1,4 @@
-.Book{
+.Book {
   height: 100%;
   margin: 0;
   width: 100%;
@@ -31,13 +31,13 @@
     width: 1002px;
     height: 297px;
     gap: 20px;
-  
+
     background-color: #ffffff;
     padding: 20px 30px;
     margin: 30px auto;
     border-radius: 10px;
-  
-    img {
+
+    >img {
       width: 170px;
       height: 230px;
     }
@@ -72,18 +72,18 @@
         line-height: 1.4;
       }
     }
-  
+
     .rating {
       width: 300px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-  
+
       h3 {
         font-size: 30px;
         text-align: center;
       }
-      div {
+      >div {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -96,11 +96,11 @@
           font-weight: 400;
           line-height: normal;
         }
-  
+
         button {
           color: #fff;
           text-align: center;
-  
+
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
@@ -114,5 +114,4 @@
       }
     }
   }
-  
 }

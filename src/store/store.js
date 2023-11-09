@@ -23,6 +23,8 @@ export default class Store {
         first_name:response.data.user.first_name,
         last_name:response.data.user.last_name,
         phone:response.data.user.phone,
+        status: response.data.status,
+        group:response.data.group
       }))
     } catch (e) {
       console.error(e);
@@ -35,7 +37,7 @@ export default class Store {
         password,
         first_name,
         last_name,
-        phone,
+        phone
       });
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem('user', JSON.stringify({
@@ -43,6 +45,8 @@ export default class Store {
         first_name,
         last_name,
         phone,
+        status: response.data.status,
+        group:response.data.group
       }))
 
     } catch (e) {

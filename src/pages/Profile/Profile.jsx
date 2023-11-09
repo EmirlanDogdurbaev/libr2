@@ -36,7 +36,7 @@ function Profile() {
         </h3>
         <p className={classes.blue}>{user.group}</p>
         <p>{user.email}</p>
-        <button className={classes.btn} type="submit">
+        <button className={classes.btn} onClick={()=>{localStorage.clear(); location.reload()}}>
           LogOut
         </button>
       </div>
