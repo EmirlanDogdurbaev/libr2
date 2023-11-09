@@ -30,6 +30,13 @@ const Nav = (props) => {
             <img src={icon1} alt="" /> catalog
           </NavItem>
         </li>
+        <li>
+          <NavItem to={'/basket'}>
+            {' '}
+            <img src={icon1} alt="" />
+            basket
+          </NavItem>
+        </li>
       </ul>
     </nav>
   );
