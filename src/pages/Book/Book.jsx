@@ -4,12 +4,11 @@ import { useParams } from "react-router-dom";
 import { api } from "../../store/api";
 import cl from "./Book.module.scss";
 import Stars from "../../components/Stars/Stars";
-import Comment from "../../components/Comment/Comment";
 
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
-  const maxChars = 1000;
+
 
   async function fetchBook() {
     try {
@@ -28,9 +27,7 @@ export default function Book() {
     fetchBook();
   }, []);
 
-  const rezka =
-    book && book.description ? book.description.slice(0, maxChars) : "";
-
+ 
   return (
     <div className={cl.Book}>
       <section>
@@ -40,10 +37,6 @@ export default function Book() {
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
             <p id="content">
-              {/* {book.description && book.description.length > 450
-                ? `${rezka}...`
-                : rezka} */}
-
               {book.description}
             </p>
           </div>
