@@ -2,13 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../store/api";
-
+import cl from './Book.module.scss'
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   async function fetchBook() {
     try {
-      const res = await axios.get(api + "/change/book/" + params.id);
+      const res = await axios.get(api + "/change/book/" + params.id + "/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       setBook(res.data);
     } catch (e) {
       console.log(e.message);
@@ -23,17 +27,14 @@ export default function Book() {
         <article className={cl.BookInfo}>
           {/* <img src={img} alt="" /> */}
           <div className={cl.text}>
-            <h3>Java spring framework</h3>
-            <h4>Amber Smith</h4>
+            <h3>{book.title}</h3>
+            <h4>{book.author}</h4>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam
-              voluptatum laboriosam tempora velit ipsum eaque explicabo quas
-              animi corrupti, magni commodi sed dolorum consequatur, accusamus
-              consequuntur temporibus ab. Sit, aliquam!
+              {book.description}
             </p>
           </div>
           <div className={cl.rating}>
-            <h3>4,2</h3>
+            <h3>{book.rating}</h3>
             <div>
               <small>В наличии: 3</small>
               <button>Заказать</button>
@@ -42,11 +43,11 @@ export default function Book() {
         </article>
         <h3 className={cl.response}>Отзывы</h3>
         <div className={cl.comment_cont}>
-          <Comment />
+          {/* <Comment />
           <Comment />
           <Comment />
 
-          <Comment />
+          <Comment /> */}
         </div>
       </section>
     </div>

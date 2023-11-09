@@ -4,8 +4,8 @@ import star from '../../assets/icons/star.svg';
 import empt from '../../assets/icons/empty.svg';
 
 function ProfileBookCard({ data }) {
-  const stars = new Array(Math.min(data.rating, 5)).fill('');
-  const empty = new Array(5 - Math.min(data.rating, 5)).fill('');
+  const stars = new Array(Math.round(data.rating)).fill('');
+  const empty = new Array(5 - Math.round(data.rating)).fill('');
 
   // console.log(data);
   const book = {
