@@ -1,7 +1,7 @@
-import NavItem from './NavItem/NavItem.jsx';
-import styles from './Nav.module.scss';
-import Logo from '../../components/UI/Logo/Logo.jsx';
-import icon1 from '../../assets/icons/home.svg';
+import NavItem from "./NavItem/NavItem.jsx";
+import styles from "./Nav.module.scss";
+import Logo from "../../components/UI/Logo/Logo.jsx";
+import icon1 from "../../assets/icons/home.svg";
 const Nav = (props) => {
   // eslint-disable-next-line react/prop-types
   const isActive = props.stateClassName;
@@ -13,30 +13,56 @@ const Nav = (props) => {
       <Logo />
       <ul>
         <li>
-          <NavItem to={'/'}>
-            {' '}
+          <NavItem to={"/"}>
+            {" "}
             <img src={icon1} alt="" /> home
           </NavItem>
         </li>
         <li>
-          <NavItem to={'/profile'}>
-            {' '}
+          <NavItem to={"/profile"}>
+            {" "}
             <img src={icon1} alt="" /> profile
           </NavItem>
         </li>
         <li>
-          <NavItem to={'/catalog'}>
-            {' '}
+          <NavItem to={"/catalog"}>
+            {" "}
             <img src={icon1} alt="" /> catalog
           </NavItem>
         </li>
-        <li>
-          <NavItem to={'/basket'}>
-            {' '}
-            <img src={icon1} alt="" />
-            basket
-          </NavItem>
-        </li>
+        {localStorage.getItem("user").status === "Librarian" ? (
+          <li>
+            <NavItem to={"/basket"}>
+              {" "}
+              <img src={icon1} alt="" />
+              basket
+            </NavItem>
+          </li>
+        ) : (
+          <>
+            <li>
+              <NavItem to={"/orders"}>
+                {" "}
+                <img src={icon1} alt="" />
+                orders
+              </NavItem>
+            </li>
+            <li>
+              <NavItem to={"/new-book"}>
+                {" "}
+                <img src={icon1} alt="" />
+                new book
+              </NavItem>
+            </li>
+            <li>
+              <NavItem to={"/messages"}>
+                {" "}
+                <img src={icon1} alt="" />
+                Messages
+              </NavItem>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
