@@ -17,19 +17,55 @@ const Nav = (props) => {
       <ul>
         <li>
           <NavItem to={"/"}>
+            {" "}
             <img src={icon1} alt="" /> home
           </NavItem>
         </li>
         <li>
-          <NavItem to={"/catalog"}>
-            <img src={catalog} alt="" /> catalog
-          </NavItem>
-        </li>
-        <li>
           <NavItem to={"/profile"}>
+            {" "}
             <img src={user} alt="" /> profile
           </NavItem>
         </li>
+        <li>
+          <NavItem to={"/catalog"}>
+            {" "}
+            <img src={catalog} alt="" /> catalog
+          </NavItem>
+        </li>
+        {localStorage.getItem("user").status === "Librarian" ? (
+          <li>
+            <NavItem to={"/basket"}>
+              {" "}
+              <img src={icon1} alt="" />
+              basket
+            </NavItem>
+          </li>
+        ) : (
+          <>
+            <li>
+              <NavItem to={"/orders"}>
+                {" "}
+                <img src={icon1} alt="" />
+                orders
+              </NavItem>
+            </li>
+            <li>
+              <NavItem to={"/new-book"}>
+                {" "}
+                <img src={icon1} alt="" />
+                new book
+              </NavItem>
+            </li>
+            <li>
+              <NavItem to={"/messages"}>
+                {" "}
+                <img src={icon1} alt="" />
+                Messages
+              </NavItem>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
