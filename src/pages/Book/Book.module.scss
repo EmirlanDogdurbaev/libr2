@@ -1,5 +1,5 @@
 .Book {
-  height: 100%;  
+  height: 100%;
   margin: 0;
   width: 100%;
   min-height: 90vh;
@@ -23,6 +23,7 @@
       justify-content: space-evenly;
       flex-wrap: wrap;
       gap: 15px;
+      padding: 0 0 50px 0;
     }
   }
   .BookInfo {
@@ -37,7 +38,7 @@
     margin: 30px auto;
     border-radius: 10px;
 
-    >img {
+    > img {
       width: 170px;
       height: 230px;
     }
@@ -86,7 +87,7 @@
         font-size: 30px;
         text-align: center;
       }
-      >div {
+      > div {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -115,6 +116,46 @@
           border-radius: 5px;
         }
       }
+    }
+  }
+}
+
+.CommentBtn {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  > form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 18px;
+
+      > input {
+        width: 400px;
+        padding: 10px;
+      }
+
+      .body {
+        width: 400px;
+        height:150px;
+        padding: 10px;
+      }
+    }
+
+    > button {
+      padding: 10px 20px;
+      border: 1px solid black;
+      background-color: #fff;
+      border-radius: 8px;
+      width: 120px;
+      margin: 0 auto;
     }
   }
 }

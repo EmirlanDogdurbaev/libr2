@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import { api } from "../../store/api";
 import cl from "./Book.module.scss";
 import Stars from "../../components/Stars/Stars";
+import Comment from "../../components/Comment/Comment";
 
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   const maxChars = 1000;
- 
 
   async function fetchBook() {
     try {
@@ -34,7 +34,7 @@ export default function Book() {
   return (
     <div className={cl.Book}>
       <section>
-        <article className={cl.BookInfo} >
+        <article className={cl.BookInfo}>
           <img src={book.image} alt="" />
           <div className={cl.text}>
             <h3>{book.title}</h3>
@@ -44,7 +44,7 @@ export default function Book() {
                 ? `${rezka}...`
                 : rezka} */}
 
-                {book.description}
+              {book.description}
             </p>
           </div>
           <div className={cl.rating}>
@@ -58,14 +58,20 @@ export default function Book() {
             </div>
           </div>
         </article>
-        <h3 className={cl.response}>Отзывы</h3>
-        <div className={cl.comment_cont}>
-          {/* <Comment />
-          <Comment />
-          <Comment />
-
-          <Comment /> */}
+        <div className={cl.CommentBtn}>
+          <form action="" >
+            <label htmlFor="">
+              На сколько это книга вам понравилось?
+              <input type="text" placeholder="my comment" />
+            </label>
+            <label htmlFor="">
+              <textarea type="text" placeholder="my comment" className={cl.body}/>
+            </label>
+            <button type="submit">Отправить</button>
+          </form>
         </div>
+        <h3 className={cl.response}>Отзывы</h3>
+        <div className={cl.comment_cont}></div>
       </section>
     </div>
   );
