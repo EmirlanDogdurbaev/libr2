@@ -18,7 +18,14 @@ export default class Store {
     try {
       const response = await axios.post(`${api}/login/`, { email, password });
       localStorage.setItem("token", response.data.access_token);
-      console.log(response.data.access_token);
+      localStorage.setItem('user', JSON.stringify({
+        email:response.data.user.email,
+        first_name:response.data.user.first_name,
+        last_name:response.data.user.last_name,
+        phone:response.data.user.phone,
+        status: response.data.user.status,
+        group:response.data.user.group
+      }))
     } catch (e) {
       console.error(e);
     }
@@ -30,7 +37,7 @@ export default class Store {
         password,
         first_name,
         last_name,
-        phone,
+        phone
       });
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem('user', JSON.stringify({
@@ -38,6 +45,8 @@ export default class Store {
         first_name,
         last_name,
         phone,
+        status: response.data.user.status,
+        group: response.data.user.group
       }))
 
     } catch (e) {
