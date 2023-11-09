@@ -25,7 +25,7 @@ export default function Book() {
     <div className={cl.Book}>
       <section>
         <article className={cl.BookInfo}>
-          {/* <img src={img} alt="" /> */}
+          <img src={book.image} alt="" />
           <div className={cl.text}>
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
