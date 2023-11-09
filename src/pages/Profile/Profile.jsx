@@ -31,7 +31,7 @@ function Profile() {
           height="60px"
         />
         <h3>
-          {user.first_name}
+          {user.first_name}{" "}
           {user.last_name}
         </h3>
         <p className={classes.blue}>{user.group}</p>

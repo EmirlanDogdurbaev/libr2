@@ -9,7 +9,7 @@ export default function Categories() {
   const { store } = useContext(Context);
   useEffect(() => {
     axios
-      .get(api + '/list/category', {
+      .get(api + '/list/category/', {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       })
       .then((res) => {
