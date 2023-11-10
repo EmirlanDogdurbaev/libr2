@@ -33,7 +33,7 @@ const Nav = (props) => {
             <img src={catalog} alt="" /> catalog
           </NavItem>
         </li>
-        {localStorage.getItem("user").status === "Librarian" ? (
+        {JSON.parse(localStorage.getItem("user")).status !== "Librarian" ? (
           <li>
             <NavItem to={"/basket"}>
               {" "}
