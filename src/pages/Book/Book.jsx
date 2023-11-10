@@ -9,7 +9,7 @@ export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   const maxChars = 1000;
- 
+  const [dueDate, setDueDate] = useState("");
 
   async function fetchBook() {
     try {
@@ -23,18 +23,25 @@ export default function Book() {
       console.log(e.message);
     }
   }
-
+  async function orderBook() {
+    try {
+      const res = await axios.post(api + "/create/order/", {
+        book: book.id,
+        due_time: dueDate,
+      });
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   useEffect(() => {
     fetchBook();
   }, []);
 
-  const rezka =
-    book && book.description ? book.description.slice(0, maxChars) : "";
-
   return (
     <div className={cl.Book}>
       <section>
-        <article className={cl.BookInfo} >
+        <article className={cl.BookInfo}>
           <img src={book.image} alt="" />
           <div className={cl.text}>
             <h3>{book.title}</h3>
@@ -44,7 +51,7 @@ export default function Book() {
                 ? `${rezka}...`
                 : rezka} */}
 
-                {book.description}
+              {book.description}
             </p>
           </div>
           <div className={cl.rating}>
@@ -53,8 +60,9 @@ export default function Book() {
               <Stars amount={book.rating} book={book} />
             </div>
             <div>
+              <input type="date" onChange={(e) => setDueDate(e.target.value)} />
               <small>В наличии: 3</small>
-              <button>Заказать</button>
+              <button onClick={orderBook}>Заказать</button>
             </div>
           </div>
         </article>
