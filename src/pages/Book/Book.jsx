@@ -9,7 +9,7 @@ export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   const maxChars = 1000;
-  const [dueDate, setDueDate] = useState("");
+ 
 
   async function fetchBook() {
     try {
@@ -38,6 +38,7 @@ export default function Book() {
     fetchBook();
   }, []);
 
+
   return (
     <div className={cl.Book}>
       <section>
@@ -47,11 +48,7 @@ export default function Book() {
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
             <p id="content">
-              {/* {book.description && book.description.length > 450
-                ? `${rezka}...`
-                : rezka} */}
-
-              {book.description}
+                {book.description}
             </p>
           </div>
           <div className={cl.rating}>
@@ -60,20 +57,27 @@ export default function Book() {
               <Stars amount={book.rating} book={book} />
             </div>
             <div>
+              <label>Верну до</label>
               <input type="date" onChange={(e) => setDueDate(e.target.value)} />
               <small>В наличии: 3</small>
               <button onClick={orderBook}>Заказать</button>
             </div>
           </div>
         </article>
-        <h3 className={cl.response}>Отзывы</h3>
-        <div className={cl.comment_cont}>
-          {/* <Comment />
-          <Comment />
-          <Comment />
-
-          <Comment /> */}
+        <div className={cl.CommentBtn}>
+          <form action="" >
+            <label htmlFor="">
+              На сколько это книга вам понравилось?
+              <input type="text" placeholder="my comment" />
+            </label>
+            <label htmlFor="">
+              <textarea type="text" placeholder="my comment" className={cl.body}/>
+            </label>
+            <button type="submit">Отправить</button>
+          </form>
         </div>
+        <h3 className={cl.response}>Отзывы</h3>
+        <div className={cl.comment_cont}></div>
       </section>
     </div>
   );
