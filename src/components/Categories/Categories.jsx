@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { api } from '../../store/api';
-import classes from './Categories.module.scss';
-import { Context } from '../../main';
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { api } from "../../store/api";
+import classes from "./Categories.module.scss";
+import { Context } from "../../main";
 export default function Categories() {
   const [categories, setCategories] = useState([]);
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("");
   const { store } = useContext(Context);
   useEffect(() => {
     axios
-      .get(api + '/list/category/', {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      .get(api + "/list/category/", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       })
       .then((res) => {
         setCategories(res.data);
@@ -23,10 +23,17 @@ export default function Categories() {
           <div
             key={id}
             onClick={() => {
-              setActive(item.title);
-              store.setCategory(item.id);
+              item.id === store.category
+                ? setActive("")
+                : setActive(item.title);
+
+              item.id === store.category
+                ? store.setCategory("")
+                : store.setCategory(item.id);
+              store.setType('category')
             }}
-            className={active === item.title ? classes.active : null}>
+            className={active === item.title ? classes.active : null}
+          >
             {item.title}
           </div>
         );

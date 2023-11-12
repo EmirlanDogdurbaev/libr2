@@ -4,7 +4,9 @@
   height: 80px;
   width: 100%;
   background-color: #fff;
-
+  select{
+    z-index: 3;
+  }
   > div {
     width: clamp(90%, 80%, 95%);
     margin: 0 auto;
