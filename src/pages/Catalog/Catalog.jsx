@@ -42,11 +42,19 @@ function Catalog() {
           }
         }
       }
+      else if(store.type === 'search'){
+        const searchedData = res.data.filter(obj =>
+          Object.values(obj).some(value =>
+            typeof value === 'string' && value.includes(store.search)
+          )
+        );
+        setData(searchedData)
+      }
       else{
         setData(res.data)
       }
     });
-  }, [store.category, store.filter]);
+  }, [store.category, store.filter, store.search]);
   return (
     <div>
       <Categories />

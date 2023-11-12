@@ -8,14 +8,18 @@ export default class Store {
   }
 
   category = "";
-  filter = '';
-  type = '';
+  filter = "";
+  search = "";
+  type = "";
 
-  setType(type){
-    this.type = type
+  setType(type) {
+    this.type = type;
   }
-  setFilter(filter){
-    this.filter = filter
+  setSearch(search) {
+    this.search = search;
+  }
+  setFilter(filter) {
+    this.filter = filter;
   }
   setCategory(category) {
     this.category = category;

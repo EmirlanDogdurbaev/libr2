@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import {Context} from '../../main'
 const SearchBar = (props) => {
   const {store} = useContext(Context)
+  const [search, setSearch] = useState('')
   const date = [
     { label: 'Самые новые', value: 'newer' },
     { label: 'Самые старые', value: 'older' },
@@ -18,14 +19,19 @@ const SearchBar = (props) => {
     store.setFilter(e.value)
     store.setType('filter')
   }
+  function submitSearch(){
+    store.setSearch(search)
+    setSearch('')
+    store.setType('search')
+  }
  
   const toggle = props.toggleClassName;
   return (
     <div className={styles.SearchBar}>
       <div>
-        <form action="#">
-          <input type="text" placeholder="search for something... " />
-          <button>search </button>
+        <form action="#" onSubmit={(e)=>e.preventDefault()}>
+          <input type="text" placeholder="search for something... " value={search} onChange={(e)=>setSearch(e.target.value)} />
+          <button onClick={submitSearch}>search </button>
         </form>
 
         <Select placeholder={'По дате'} options={date} onChange={(e)=>filter(e)}/>
