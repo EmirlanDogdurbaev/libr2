@@ -8,8 +8,7 @@ import Stars from "../../components/Stars/Stars";
 export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
-  const maxChars = 1000;
- 
+  const [dueDate, setDueDate] = useState("");
 
   async function fetchBook() {
     try {
@@ -25,10 +24,18 @@ export default function Book() {
   }
   async function orderBook() {
     try {
-      const res = await axios.post(api + "/create/order/", {
-        book: book.id,
-        due_time: dueDate,
-      });
+      const res = await axios.post(
+        api + "/create/order/",
+        {
+          books: [book.id],
+          due_time: dueDate,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       console.log(res.data);
     } catch (e) {
       console.log(e);
@@ -38,7 +45,6 @@ export default function Book() {
     fetchBook();
   }, []);
 
-
   return (
     <div className={cl.Book}>
       <section>
@@ -47,9 +53,7 @@ export default function Book() {
           <div className={cl.text}>
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
-            <p id="content">
-                {book.description}
-            </p>
+            <p id="content">{book.description}</p>
           </div>
           <div className={cl.rating}>
             <h3>{book.rating}</h3>
@@ -65,13 +69,17 @@ export default function Book() {
           </div>
         </article>
         <div className={cl.CommentBtn}>
-          <form action="" >
+          <form action="">
             <label htmlFor="">
               На сколько это книга вам понравилось?
               <input type="text" placeholder="my comment" />
             </label>
             <label htmlFor="">
-              <textarea type="text" placeholder="my comment" className={cl.body}/>
+              <textarea
+                type="text"
+                placeholder="my comment"
+                className={cl.body}
+              />
             </label>
             <button type="submit">Отправить</button>
           </form>
