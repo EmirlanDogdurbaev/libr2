@@ -12,6 +12,7 @@ export default function Basket() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setOrders(response.data);
+      console.log(response.data);
     } catch (e) {
       console.log(e.message);
     }
