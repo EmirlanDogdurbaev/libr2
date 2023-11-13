@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { api } from "../../store/api";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import classes from './Basket.module.scss'
+import { header } from "../../store/header";
 export default function Basket() {
   const [orders, setOrders] = useState([]);
 
@@ -20,11 +21,7 @@ export default function Basket() {
 
   async function fetchBook(id) {
     try {
-      const res = await axios.get(api + "/change/book/" + id + "/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await axios.get(api + "/change/book/" + id + "/", header);
       return res.data;
     } catch (error) {
       console.log(error.message);

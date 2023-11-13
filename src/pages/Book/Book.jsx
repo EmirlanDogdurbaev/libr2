@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../store/api";
 import cl from "./Book.module.scss";
 import Stars from "../../components/Stars/Stars";
+import { header } from "../../store/header";
 
 export default function Book() {
   const params = useParams();
@@ -12,11 +13,7 @@ export default function Book() {
 
   async function fetchBook() {
     try {
-      const res = await axios.get(api + "/change/book/" + params.id + "/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await axios.get(api + "/change/book/" + params.id + "/",header);
       setBook(res.data);
     } catch (e) {
       console.log(e.message);

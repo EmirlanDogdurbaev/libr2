@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import classes from './BasketCard.module.scss'
 import axios from 'axios';
 import { api } from '../../store/api';
+import { header } from '../../store/header';
 export default function BasketCard({ item, fetchBook }) {
   const [book, setBook] = useState({});
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function BasketCard({ item, fetchBook }) {
     
   }, [item.books, fetchBook]);
   async function removeOrder(){
-    const res = await axios.delete(api + `/change/order/${item.id}/`, {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
+    const res = await axios.delete(api + `/change/order/${item.id}/`, header)
     console.log(res.data);
   } 
   return (
