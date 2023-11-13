@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { api } from "../../store/api";
-
+import BasketCard from "../../components/BasketCard/BasketCard";
+import classes from './Basket.module.scss'
 export default function Basket() {
   const [orders, setOrders] = useState([]);
 
@@ -38,31 +39,15 @@ export default function Basket() {
   }, []);
 
   return (
-    <div>
+    <div className={classes.Basket}>
+      <span>Basket</span>
       {orders.map((item, id) => (
         <div key={id}>
-          <OrderDetails item={item} fetchBook={fetchBook} />
+          <BasketCard item={item} fetchBook={fetchBook} />
         </div>
       ))}
     </div>
   );
 }
 
-function OrderDetails({ item, fetchBook }) {
-  const [book, setBook] = useState({});
 
-  useEffect(() => {
-    async function fetchData() {
-      const bookData = await fetchBook(item.books[0]);
-      setBook(bookData || {});
-    }
-    fetchData();
-  }, [item.books, fetchBook]);
-
-  return (
-    <div>
-      <div>{book.title}</div>
-      <div>{item.due_time}</div>
-    </div>
-  );
-}
