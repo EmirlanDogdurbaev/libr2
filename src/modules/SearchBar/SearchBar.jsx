@@ -47,8 +47,10 @@ const SearchBar = (props) => {
               placeholder={"По дате"}
               options={date}
               onChange={(e) => filter(e)}
+              className={styles.test}
             />
             <Select
+             className={styles.test}
               placeholder={"По популярности"}
               options={popularity}
               onChange={(e) => filter(e)}
