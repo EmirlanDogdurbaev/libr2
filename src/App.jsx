@@ -17,6 +17,7 @@ function App() {
         <Layout>
           <Routes>
             <Route index element={<Home />} />
+            <Route path="*" element={<Redirect where={"/"} />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/basket" element={<Basket />} />
@@ -26,7 +27,7 @@ function App() {
       ) : (
         <>
           <Routes>
-            <Route path="*" element={<Redirect />} />
+            <Route path="*" element={<Redirect where={"/login"} />} />
             <Route
               path="/login"
               element={
