@@ -67,6 +67,11 @@ function Register() {
         onChange={(e) => setPhone(e.target.value)}
         value={phone}
       />
+      <select name="group" id="group">
+        <option>AIN-1</option>
+        <option>AIN-2</option>
+        <option>AIN-3</option>
+      </select>
 
       <Button action={register}>Ресистрация</Button>
       <Link to={"/login"}>Уже есть аккаунт</Link>
