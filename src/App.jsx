@@ -10,6 +10,7 @@ import Catalog from './pages/Catalog/Catalog.jsx';
 import Profile from './pages/Profile/Profile.jsx';
 import Book from './pages/Book/Book.jsx';
 import Basket from './pages/Basket/Basket.jsx';
+import CreateBook from './pages/CreateBook/CreateBook.jsx';
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/basket" element={<Basket />} />
             <Route path="/book/:id" element={<Book/>} />
+            <Route path='/new-book' element={<CreateBook/>}/>
           </Routes>
         </Layout>
       ) : (
