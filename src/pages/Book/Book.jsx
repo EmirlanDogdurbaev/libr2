@@ -13,7 +13,10 @@ export default function Book() {
 
   async function fetchBook() {
     try {
-      const res = await axios.get(api + "/change/book/" + params.id + "/",header);
+      const res = await axios.get(
+        api + "/change/book/" + params.id + "/",
+        header
+      );
       setBook(res.data);
     } catch (e) {
       console.log(e.message);
@@ -27,11 +30,7 @@ export default function Book() {
           books: [book.id],
           due_time: dueDate,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        header
       );
       console.log(res.data);
     } catch (e) {
