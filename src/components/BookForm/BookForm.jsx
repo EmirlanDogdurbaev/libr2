@@ -60,11 +60,7 @@ export default function BookForm() {
     formData.append("author", author);
 
     try {
-      const res = await axios.post(
-        `${api}/create/book/`,
-        formData,
-        header
-      );
+      const res = await axios.post(`${api}/create/book/`, formData, header);
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
@@ -91,12 +87,18 @@ export default function BookForm() {
         value={description}
         onChange={handleDescriptionChange}
       />
+      
       <label htmlFor="image">Обложка</label>
       <input
         type="file"
         id="image"
         accept="image/*"
         onChange={handleImageChange}
+      />
+      <Select
+        placeholder="Категории"
+        options={categories}
+        onChange={(e) => setCategory(e.value)}
       />
       <label htmlFor="quantity">Количество</label>
       <input
@@ -112,12 +114,8 @@ export default function BookForm() {
         value={author}
         onChange={handleAuthorChange}
       />
-      <Select
-        placeholder="Категории"
-        options={categories}
-        onChange={(e) => setCategory(e.value)}
-      />
-      <Button action={null}>Submit</Button>
+
+      <Button action={null}>Создать книгу</Button>
     </form>
   );
 }
