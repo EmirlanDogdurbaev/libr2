@@ -1,16 +1,25 @@
-import { React, useState, useEffect } from 'react';
-import classes from './Profile.module.scss';
-import axios from 'axios';
-import { api } from '../../store/api';
-import ProfileBookCard from '../../components/ProfileBookCard/ProfileBookCard';
+import { React, useState, useEffect } from "react";
+import classes from "./Profile.module.scss";
+import axios from "axios";
+import { api } from "../../store/api";
+import ProfileBookCard from "../../components/ProfileBookCard/ProfileBookCard";
 
 function Profile() {
   const [books, setBooks] = useState([]);
   const [user, setUser] = useState([]);
+  const [group, setGroup] = useState([]);
   async function profileBooks() {
     try {
-      const res = await axios.get(api + '/list/book/');
+      const res = await axios.get(api + "/list/book/");
       setBooks(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function studentGroup() {
+    try {
+      const res = await axios.get(api + "/change/group/" + JSON.parse(localStorage.getItem("user")) .group + "/");
+      setGroup(res.data);
     } catch (e) {
       console.log(e);
     }
@@ -18,7 +27,8 @@ function Profile() {
 
   useEffect(() => {
     profileBooks();
-    setUser(JSON.parse(localStorage.getItem('user')));
+    setUser(JSON.parse(localStorage.getItem("user")));
+    studentGroup();
   }, []);
 
   return (
@@ -31,12 +41,17 @@ function Profile() {
           height="60px"
         />
         <h3>
-          {user.first_name}{" "}
-          {user.last_name}
+          {user.first_name} {user.last_name}
         </h3>
-        <p className={classes.blue}>{user.group}</p>
+        <p className={classes.blue}>{group}</p>
         <p>{user.email}</p>
-        <button className={classes.btn} onClick={()=>{localStorage.clear(); location.reload()}}>
+        <button
+          className={classes.btn}
+          onClick={() => {
+            localStorage.clear();
+            location.reload();
+          }}
+        >
           LogOut
         </button>
       </div>
