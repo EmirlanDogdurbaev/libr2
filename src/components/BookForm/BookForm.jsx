@@ -4,6 +4,7 @@ import axios from "axios";
 import { api } from "../../store/api";
 import { header } from "../../store/header";
 import Select from "react-select";
+import Button from "../Button/Button";
 
 export default function BookForm() {
   const [title, setTitle] = useState("");
@@ -116,7 +117,7 @@ export default function BookForm() {
         options={categories}
         onChange={(e) => setCategory(e.value)}
       />
-      <button type="submit">Submit</button>
+      <Button action={null}>Submit</Button>
     </form>
   );
 }
