@@ -44,7 +44,7 @@ const Nav = (props) => {
         ) : (
           <>
             <li>
-              <NavItem to={"/orders"}>
+              <NavItem to={"/basket"}>
                 {" "}
                 <img src={icon1} alt="" />
                 orders
