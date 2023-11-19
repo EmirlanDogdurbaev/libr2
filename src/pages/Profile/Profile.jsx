@@ -16,7 +16,6 @@ function Profile() {
     }
   }
 
-
   useEffect(() => {
     profileBooks();
     setUser(JSON.parse(localStorage.getItem("user")));
@@ -34,7 +33,9 @@ function Profile() {
         <h3>
           {user.first_name} {user.last_name}
         </h3>
-        <p className={classes.blue}>{user?.group}</p>
+        <p className={classes.blue}>
+          {user.group !== "Liber" ? user.group : null}
+        </p>
         <p>{user.email}</p>
         <button
           className={classes.btn}
@@ -46,11 +47,13 @@ function Profile() {
           LogOut
         </button>
       </div>
-      <div className={classes.second}>
-        {books.map((data) => {
-          return <ProfileBookCard data={data} key={data.id} />;
-        })}
-      </div>
+      {user.status !== "Librarian" ? (
+        <div className={classes.second}>
+          {books.map((data) => {
+            return <ProfileBookCard data={data} key={data.id} />;
+          })}
+        </div>
+      ) : null}
     </div>
   );
 }
