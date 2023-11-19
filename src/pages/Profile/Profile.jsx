@@ -7,7 +7,6 @@ import ProfileBookCard from "../../components/ProfileBookCard/ProfileBookCard";
 function Profile() {
   const [books, setBooks] = useState([]);
   const [user, setUser] = useState([]);
-  const [group, setGroup] = useState([]);
   async function profileBooks() {
     try {
       const res = await axios.get(api + "/list/book/");
@@ -16,19 +15,11 @@ function Profile() {
       console.log(e);
     }
   }
-  async function studentGroup() {
-    try {
-      const res = await axios.get(api + "/change/group/" + JSON.parse(localStorage.getItem("user")) .group + "/");
-      setGroup(res.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+
 
   useEffect(() => {
     profileBooks();
     setUser(JSON.parse(localStorage.getItem("user")));
-    studentGroup();
   }, []);
 
   return (
@@ -43,7 +34,7 @@ function Profile() {
         <h3>
           {user.first_name} {user.last_name}
         </h3>
-        <p className={classes.blue}>{group}</p>
+        <p className={classes.blue}>{user?.group}</p>
         <p>{user.email}</p>
         <button
           className={classes.btn}
