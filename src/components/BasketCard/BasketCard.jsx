@@ -27,6 +27,7 @@ export default function BasketCard({ item, fetchBook }) {
 
         {isLiber ? (
           <div>
+            <div>От {item.owner}</div>
             <Button>Подтвердить</Button>
           </div>
         ) : null}
