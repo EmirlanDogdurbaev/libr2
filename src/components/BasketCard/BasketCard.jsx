@@ -5,6 +5,7 @@ import classes from "./BasketCard.module.scss";
 import axios from "axios";
 import { api } from "../../store/api";
 import { header } from "../../store/header";
+
 export default function BasketCard({ item, fetchBook }) {
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
@@ -20,6 +21,15 @@ export default function BasketCard({ item, fetchBook }) {
     const res = await axios.delete(api + `/change/order/${item.id}/`, header);
     console.log(res.data);
   }
+  async function confirm(){
+    try{
+      const res = await axios.patch(api+'/change/order/'+ item.id + "/", {status:"В обработке"}, header)
+      console.log(res.data);
+    }
+    catch(e){
+      console.log(e.message);
+    }
+  }
   return (
     <div className={classes.BasketCard}>
       <div>
@@ -28,10 +38,15 @@ export default function BasketCard({ item, fetchBook }) {
         {isLiber ? (
           <div>
             <div>От {item.owner}</div>
-            <Button>Подтвердить</Button>
+            <Button action={confirm}>Подтвердить</Button>
           </div>
         ) : null}
+        {
+          item.status === 'Не рассмотрено'?
+          
         <Button action={removeOrder}>Удалить</Button>
+        :null
+        }
       </div>
       <BookCard data={book} />
     </div>
