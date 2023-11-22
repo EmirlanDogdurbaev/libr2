@@ -1,12 +1,12 @@
-import React from "react";
-import classes from "./ProfileBookCard.module.scss";
-import Stars from "../Stars/Stars";
+import React from 'react';
+import classes from './ProfileBookCard.module.scss';
+import Stars from '../Stars/Stars';
 
 function ProfileBookCard({ data }) {
   // console.log(data);
   const book = {
-    date: "21.04.2023",
-    time: "8 days",
+    date: '21.04.2023',
+    time: '8 days',
   };
 
   return (
@@ -25,7 +25,7 @@ function ProfileBookCard({ data }) {
         <div className={classes.desc}>
           <h3>{data.title}</h3>
           <p>{data.author}</p>
-            <Stars amount={data.rating} />
+          <Stars amount={data.rating} />
         </div>
         <img src={data.image} alt="book image" />
       </div>
