@@ -44,21 +44,18 @@ function Profile() {
         <h3>
           {user.first_name} {user.last_name}
         </h3>
-        <p className={classes.blue}>
-          {user.group !== "Liber" ? user.group : null}
-        </p>
+        <p className={classes.blue}>{user.group !== 'Liber' ? user.group : null}</p>
         <p>{user.email}</p>
         <button
           className={classes.btn}
           onClick={() => {
             localStorage.clear();
             location.reload();
-          }}
-        >
+          }}>
           LogOut
         </button>
       </div>
-      {user.status !== "Librarian" ? (
+      {user.status !== 'Librarian' ? (
         <div className={classes.second}>
           {orders.map((data) => {
             return <ProfileBookCard data={data} fetchBook={fetchBook} key={data.id} />;
