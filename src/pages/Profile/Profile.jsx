@@ -3,21 +3,32 @@ import classes from "./Profile.module.scss";
 import axios from "axios";
 import { api } from "../../store/api";
 import ProfileBookCard from "../../components/ProfileBookCard/ProfileBookCard";
+import { header } from "../../store/header";
 
 function Profile() {
-  const [books, setBooks] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [user, setUser] = useState([]);
-  async function profileBooks() {
+  async function profileOrders() {
     try {
-      const res = await axios.get(api + "/list/book/");
-      setBooks(res.data);
+      const res = await axios.get(api + "/list/order/", header);
+      const confirmedOrders = res.data.filter((item)=>item.status === "Выполнен")
+      setOrders(confirmedOrders);
     } catch (e) {
       console.log(e);
     }
   }
+  async function fetchBook(id) {
+    try {
+      const res = await axios.get(api + "/change/book/"+id+"/", header);
+      return res.data
+    } catch (e) {
+      console.log(e);
+      return null
+    }
+  }
 
   useEffect(() => {
-    profileBooks();
+    profileOrders();
     setUser(JSON.parse(localStorage.getItem("user")));
   }, []);
 
@@ -49,8 +60,8 @@ function Profile() {
       </div>
       {user.status !== "Librarian" ? (
         <div className={classes.second}>
-          {books.map((data) => {
-            return <ProfileBookCard data={data} key={data.id} />;
+          {orders.map((data) => {
+            return <ProfileBookCard data={data} fetchBook={fetchBook} key={data.id} />;
           })}
         </div>
       ) : null}

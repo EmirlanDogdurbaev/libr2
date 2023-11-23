@@ -9,9 +9,7 @@ export default function Basket() {
 
   async function fetchOrders() {
     try {
-      const response = await axios.get(api + "/list/order/", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const response = await axios.get(api + "/list/order/", header);
       setOrders(response.data);
       console.log(response.data);
     } catch (e) {
