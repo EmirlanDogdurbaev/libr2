@@ -10,6 +10,7 @@ export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   const [dueDate, setDueDate] = useState("");
+  const [stars, setStars] = useState(0)
 
   async function fetchBook() {
     try {
@@ -66,17 +67,16 @@ export default function Book() {
         </article>
         <div className={cl.CommentBtn}>
           <form action="">
-            <label htmlFor="">
+            <label htmlFor="comment">
               На сколько это книга вам понравилось?
-              <input type="text" placeholder="my comment" />
             </label>
-            <label htmlFor="">
-              <textarea
-                type="text"
-                placeholder="my comment"
-                className={cl.body}
-              />
-            </label>
+            <Stars amount={stars} book={book} clickable={true}/>
+            <textarea
+              type="text"
+              id="comment"
+              placeholder="comment"
+              className={cl.body}
+            />
             <button type="submit">Отправить</button>
           </form>
         </div>

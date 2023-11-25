@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import star from "../../assets/icons/star.svg";
 import empt from "../../assets/icons/empty.svg";
-import classes from './Stars.module.scss'
-export default function Stars({ amount, book }) {
+import classes from "./Stars.module.scss";
+export default function Stars({ amount, book, clickable }) {
   const [stars, setStars] = useState([]);
   const [empty, setEmpty] = useState([]);
+  const all = [...stars, ...empty];
+  function changeStars(id) {
+    if (clickable) {
+      setStars(new Array(id + 1).fill("s"));
+      setEmpty(new Array(5 - (id + 1)).fill("e"));
+    }
+  }
   useEffect(() => {
     const roundedAmount = Math.round(amount) || 0; // Use 0 as the default value if amount is undefined
-    setStars(new Array(roundedAmount).fill(""));
-    setEmpty(new Array(5 - roundedAmount).fill(""));
+    setStars(new Array(roundedAmount).fill("s"));
+    setEmpty(new Array(5 - roundedAmount).fill("e"));
   }, [amount, book]);
   return (
     <div className={classes.Stars}>
-      {stars.map((item, id) => (
+      {all.map((item, id) => (
         <div key={id}>
-          <img src={star} alt="star" />
-        </div>
-      ))}
-      {empty.map((item, id) => (
-        <div key={id}>
-          <img src={empt} alt="empty" />
+          {item === "s" ? (
+            <img src={star} alt="star" onClick={()=>changeStars(id)} />
+          ) : item === "e" ? (
+            <img src={empt} alt="empty" onClick={()=>changeStars(id)} />
+          ) : null}
         </div>
       ))}
     </div>
