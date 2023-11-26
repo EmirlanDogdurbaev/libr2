@@ -10,7 +10,8 @@ export default function Book() {
   const params = useParams();
   const [book, setBook] = useState({});
   const [dueDate, setDueDate] = useState("");
-  const [stars, setStars] = useState(0)
+  const [text, setText] = useState("");
+  const [grade, setGrade] = useState(0);
 
   async function fetchBook() {
     try {
@@ -19,10 +20,22 @@ export default function Book() {
         header
       );
       setBook(res.data);
+      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
+  // async function fetchReviews() {
+  //   try {
+  //     const res = await axios.get(
+  //       api + "/list/review/" + params.id + "/",
+  //       header
+  //     );
+  //     setBook(res.data);
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // }
   async function orderBook() {
     try {
       const res = await axios.post(
@@ -38,6 +51,25 @@ export default function Book() {
       console.log(e);
     }
   }
+  async function sendReview(e) {
+    e.preventDefault();
+    console.log(book.id);
+    try {
+      const res = await axios.post(
+        api + "/create/review/",
+        {
+          text,
+          grade,
+          book: book.id,
+        },
+        header
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   useEffect(() => {
     fetchBook();
   }, []);
@@ -66,22 +98,59 @@ export default function Book() {
           </div>
         </article>
         <div className={cl.CommentBtn}>
-          <form action="">
+          <form onSubmit={(e) => sendReview(e)}>
             <label htmlFor="comment">
               На сколько это книга вам понравилось?
             </label>
-            <Stars amount={stars} book={book} clickable={true}/>
+            <Stars
+              amount={0}
+              book={book}
+              clickable={true}
+              setGrade={setGrade}
+            />
             <textarea
               type="text"
               id="comment"
               placeholder="comment"
               className={cl.body}
+              onChange={(e) => setText(e.target.value)}
             />
-            <button type="submit">Отправить</button>
+            <button>Отправить</button>
           </form>
         </div>
         <h3 className={cl.response}>Отзывы</h3>
-        <div className={cl.comment_cont}></div>
+        <div className={cl.comment_cont}>
+          <div>
+            <h2>Amit kurbanv</h2>
+            <Stars amount={3} book={book} />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              vero, modi beatae aliquid sunt accusantium quasi odio quia
+              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
+              architecto natus quibusdam!
+            </p>
+          </div>
+          <div>
+            <h2>Amit kurbanv</h2>
+            <Stars amount={3} book={book} />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              vero, modi beatae aliquid sunt accusantium quasi odio quia
+              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
+              architecto natus quibusdam!
+            </p>
+          </div>
+          <div>
+            <h2>Amit kurbanv</h2>
+            <Stars amount={3} book={book} />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              vero, modi beatae aliquid sunt accusantium quasi odio quia
+              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
+              architecto natus quibusdam!
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );

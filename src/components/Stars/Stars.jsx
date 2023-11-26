@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import star from "../../assets/icons/star.svg";
 import empt from "../../assets/icons/empty.svg";
 import classes from "./Stars.module.scss";
-export default function Stars({ amount, book, clickable }) {
+export default function Stars({ amount, book, clickable, setGrade }) {
   const [stars, setStars] = useState([]);
   const [empty, setEmpty] = useState([]);
   const all = [...stars, ...empty];
@@ -10,6 +10,7 @@ export default function Stars({ amount, book, clickable }) {
     if (clickable) {
       setStars(new Array(id + 1).fill("s"));
       setEmpty(new Array(5 - (id + 1)).fill("e"));
+      setGrade(stars.length)
     }
   }
   useEffect(() => {
