@@ -37,28 +37,38 @@ function Catalog() {
               break;
 
             default:
-              setData(res.data)
+              setData(res.data);
               break;
           }
         }
-      }
-      else if(store.type === 'search'){
-        const searchedData = res.data.filter(obj =>
-          Object.values(obj).some(value =>
-            typeof value === 'string' && value.includes(store.search)
+      } else if (store.type === "search") {
+        const searchedData = res.data.filter((obj) =>
+          Object.values(obj).some(
+            (value) => typeof value === "string" && value.includes(store.search)
           )
         );
-        setData(searchedData)
-      }
-      else{
-        setData(res.data)
+        setData(searchedData);
+      } else {
+        setData(res.data);
       }
     });
   }, [store.category, store.filter, store.search]);
   return (
-    <div>
+    <div style={{
+      margin: "0 auto",
+      maxWidth:"1300px"
+    }}>
       <Categories />
-      <Slider books={data} />
+      <div style={{
+        display:"flex",
+        flexWrap:"wrap",
+        
+
+      }}>
+        {data.map((item) => {
+          return <BookCard data={item} />;
+        })}
+      </div>
     </div>
   );
 }
