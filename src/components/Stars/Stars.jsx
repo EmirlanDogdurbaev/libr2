@@ -10,6 +10,7 @@ export default function Stars({ amount, book, clickable, setGrade }) {
     if (clickable) {
       setStars(new Array(id + 1).fill("s"));
       setEmpty(new Array(5 - (id + 1)).fill("e"));
+      console.log(stars.length);
       setGrade(stars.length)
     }
   }

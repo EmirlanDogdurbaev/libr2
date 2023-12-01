@@ -57,13 +57,6 @@ const Nav = (props) => {
                 new book
               </NavItem>
             </li>
-            <li>
-              <NavItem to={"/messages"}>
-                {" "}
-                <img src={icon1} alt="" />
-                Messages
-              </NavItem>
-            </li>
           </>
         )}
       </ul>

@@ -12,7 +12,7 @@ export default function Book() {
   const [dueDate, setDueDate] = useState("");
   const [text, setText] = useState("");
   const [grade, setGrade] = useState(0);
-
+  const [comments, setComments] = useState([])
   async function fetchBook() {
     try {
       const res = await axios.get(
@@ -25,17 +25,18 @@ export default function Book() {
       console.log(e.message);
     }
   }
-  // async function fetchReviews() {
-  //   try {
-  //     const res = await axios.get(
-  //       api + "/list/review/" + params.id + "/",
-  //       header
-  //     );
-  //     setBook(res.data);
-  //   } catch (e) {
-  //     console.log(e.message);
-  //   }
-  // }
+  async function fetchReviews() {
+    try {
+      const res = await axios.get(
+        api + "/list/review/" + params.id + "/",
+        header
+      );
+      setComments(res.data);
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
   async function orderBook() {
     try {
       const res = await axios.post(
@@ -72,6 +73,7 @@ export default function Book() {
 
   useEffect(() => {
     fetchBook();
+    fetchReviews();
   }, []);
 
   return (
@@ -120,36 +122,15 @@ export default function Book() {
         </div>
         <h3 className={cl.response}>Отзывы</h3>
         <div className={cl.comment_cont}>
-          <div>
-            <h2>Amit kurbanv</h2>
-            <Stars amount={3} book={book} />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              vero, modi beatae aliquid sunt accusantium quasi odio quia
-              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
-              architecto natus quibusdam!
+          {comments.map((i, id)=>{
+            return <div key={id}>
+            <h2>{i.author}</h2>
+
+            <Stars amount={i.grade} book={book} />
+            <p>{i.text}
             </p>
           </div>
-          <div>
-            <h2>Amit kurbanv</h2>
-            <Stars amount={3} book={book} />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              vero, modi beatae aliquid sunt accusantium quasi odio quia
-              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
-              architecto natus quibusdam!
-            </p>
-          </div>
-          <div>
-            <h2>Amit kurbanv</h2>
-            <Stars amount={3} book={book} />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              vero, modi beatae aliquid sunt accusantium quasi odio quia
-              reiciendis corrupti numquam eius pariatur similique. Rem odit ab
-              architecto natus quibusdam!
-            </p>
-          </div>
+          })}
         </div>
       </section>
     </div>
