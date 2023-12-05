@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { api } from "../../store/api";
 import BasketCard from "../../components/BasketCard/BasketCard";
-import classes from './Basket.module.scss'
+import classes from "./Basket.module.scss";
 import { header } from "../../store/header";
 export default function Basket() {
   const [orders, setOrders] = useState([]);
@@ -45,5 +45,3 @@ export default function Basket() {
     </div>
   );
 }
-
-

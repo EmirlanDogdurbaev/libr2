@@ -28,7 +28,7 @@ export default function BasketCard({ item, fetchBook }) {
     console.log(res.data);
   }
 
-  async function testOrder() {
+  async function giveOrder() {
     const res = await axios.patch(
       api + `/change/order/${item.id}/`,
       { status: "Выполнен" },
@@ -53,16 +53,26 @@ export default function BasketCard({ item, fetchBook }) {
     <div className={classes.BasketCard}>
       <div>
         <div>{item.status}</div>
-
         {isLiber ? (
           <div className={classes.confirm_block}>
-            <div>От {item.owner}</div>
-            <Button action={confirm}>Подтвердить</Button>
+            <div>
+              От : <span>{item.owner}</span>
+            </div>
+
             {item.status === "Ожидает проверки" ? (
-              <Button action={rejectedOrder}>Удалить</Button>
+              <section className={classes.btn_section}>
+                <Button action={confirm}>Подтвердить</Button>
+              </section>
+            ) : null}
+            {item.status === "Ожидает проверки" ? (
+              <section className={classes.btn_section}>
+                <Button action={rejectedOrder}>Удалить</Button>
+              </section>
             ) : null}
             {item.status === "В обработке" ? (
-              <Button action={testOrder}>test</Button>
+              <section className={classes.btn_section}>
+                <Button action={giveOrder}>Выдать книгу</Button>
+              </section>
             ) : null}
           </div>
         ) : null}
