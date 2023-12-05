@@ -12,10 +12,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    gap: 20px;
   }
   >div:last-child{
     box-shadow: none!important;
     background-color: transparent;
     width: 300px;
+  }
+
+
+  .confirm_block{
+    >div{
+      margin: 10px 0;
+    }
   }
 }
