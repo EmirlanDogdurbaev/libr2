@@ -16,7 +16,7 @@ export default function BookForm() {
   const [categories, setCategories] = useState([]);
 
   async function fetchCategories() {
-    const res = await axios.get(api + "/list/category/", header);
+    const res = await axios.get(api + "/list/category", header);
     const catArray = res.data.map((item) => ({
       label: item.title,
       value: item.id,

@@ -8,7 +8,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   async function fetchBooks(){
     try {
-      const res = await axios.get(api + "/list/book/");
+      const res = await axios.get(api + "/list/book");
       setBooks(res.data);
     } catch (e) {
       console.log(e);

@@ -16,7 +16,7 @@ export default function Book() {
   async function fetchBook() {
     try {
       const res = await axios.get(
-        api + "/change/book/" + params.id + "/",
+        api + "/change/book/" + params.id,
         header
       );
       setBook(res.data);
@@ -28,7 +28,7 @@ export default function Book() {
   async function fetchReviews() {
     try {
       const res = await axios.get(
-        api + "/list/review/" + params.id + "/",
+        api + "/list/review/" + params.id,
         header
       );
       setComments(res.data);
@@ -40,7 +40,7 @@ export default function Book() {
   async function orderBook() {
     try {
       const res = await axios.post(
-        api + "/create/order/",
+        api + "/create/order",
         {
           books: [book.id],
           due_time: dueDate,
@@ -57,7 +57,7 @@ export default function Book() {
     console.log(book.id);
     try {
       const res = await axios.post(
-        api + "/create/review/",
+        api + "/create/review",
         {
           text,
           grade,

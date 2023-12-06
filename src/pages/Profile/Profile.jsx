@@ -10,7 +10,7 @@ function Profile() {
   const [user, setUser] = useState([]);
   async function profileOrders() {
     try {
-      const res = await axios.get(api + "/list/order/", header);
+      const res = await axios.get(api + "/list/order", header);
       const confirmedOrders = res.data.filter((item)=>item.status === "Выполнен")
       setOrders(confirmedOrders);
     } catch (e) {
@@ -19,7 +19,7 @@ function Profile() {
   }
   async function fetchBook(id) {
     try {
-      const res = await axios.get(api + "/change/book/"+id+"/", header);
+      const res = await axios.get(api + "/change/book/"+id, header);
       return res.data
     } catch (e) {
       console.log(e);

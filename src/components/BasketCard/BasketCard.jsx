@@ -18,12 +18,12 @@ export default function BasketCard({ item, fetchBook }) {
     fetchData();
   }, [item.books, fetchBook]);
   async function removeOrder() {
-    const res = await axios.delete(api + `/change/order/${item.id}/`, header);
+    const res = await axios.delete(api + `/change/order/${item.id}`, header);
     console.log(res.data);
   }
   async function confirm(){
     try{
-      const res = await axios.patch(api+'/change/order/'+ item.id + "/", {status:"В обработке"}, header)
+      const res = await axios.patch(api+'/change/order/'+ item.id , {status:"В обработке"}, header)
       console.log(res.data);
     }
     catch(e){

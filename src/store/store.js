@@ -29,7 +29,7 @@ export default class Store {
   }
   async login(email, password) {
     try {
-      const response = await axios.post(`${api}/login/`, { email, password });
+      const response = await axios.post(`${api}/login`, { email, password });
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem(
         "user",
@@ -48,7 +48,7 @@ export default class Store {
   }
   async register(email, password, first_name, last_name, phone) {
     try {
-      const response = await axios.post(`${api}/register/`, {
+      const response = await axios.post(`${api}/register`, {
         email,
         password,
         first_name,
