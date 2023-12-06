@@ -1,33 +1,53 @@
-.BasketCard{
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 10px 50px;
-  max-width: 50%;
-  margin: 20px auto;
-  >div:first-child{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
+.confirm_block {
+  > div {
+    margin: 10px 0;
   }
-  >div:last-child{
-    box-shadow: none!important;
-    background-color: transparent;
-    width: 300px;
+}
+.btn_section {
+  margin: 10px 0;
+}
+.tableContainer {
+  margin: 20px;
+}
+
+.bookTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
   }
 
-
-  .confirm_block{
-    >div{
-      margin: 10px 0;
-    }
-
-    .btn_section{
-      margin: 10px 0;
-    }
+  th {
+    background-color: #f2f2f2;
   }
+}
+
+.confirmBtn,
+.rejectBtn,
+.issueBtn {
+  margin-right: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+}
+
+.rejectBtn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+}
+
+.issueBtn {
+  background-color: #337ab7;
+  color: white;
+  border: none;
 }
