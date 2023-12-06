@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import BookCard from "../BookCard/BookCard";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./BasketCard.module.scss";
 import axios from "axios";
 import { api } from "../../store/api";
 import { header } from "../../store/header";
 
+// eslint-disable-next-line react/prop-types
 export default function BasketCard({ item, fetchBook }) {
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
@@ -13,12 +13,17 @@ export default function BasketCard({ item, fetchBook }) {
   console.log(book);
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).status === "Librarian");
+
     async function fetchData() {
+      // eslint-disable-next-line react/prop-types
       const bookData = await fetchBook(item.books[0]);
       setBook(bookData || {});
     }
+
     fetchData();
+    // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
+
   async function rejectedOrder() {
     const res = await axios.patch(
       api + `/change/order/${item.id}/`,
@@ -59,7 +64,8 @@ export default function BasketCard({ item, fetchBook }) {
             <th>Название книги</th>
             <th>Рейтинг книги</th>
             <th>Количество книг</th>
-            <th>item.status</th>
+            <th>статус</th>
+            <th>заказчик</th>
             <th>Действия</th>
           </tr>
         </thead>
@@ -70,6 +76,7 @@ export default function BasketCard({ item, fetchBook }) {
             <td>{book.rating}</td>
             <td>{book.quantity}</td>
             <td>{item.status}</td>
+            <td>{item.owner}</td>
             <td>
               {isLiber ? (
                 <div className={styles.confirm_block}>
