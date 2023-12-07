@@ -23,32 +23,13 @@ export default function BasketCard({ item, fetchBook }) {
     fetchData();
     // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
-
-  async function rejectedOrder() {
-    const res = await axios.patch(
-      api + `/change/order/${item.id}/`,
-      { status: "Ошибка" },
-      header
-    );
+  async function removeOrder() {
+    const res = await axios.delete(api + `/change/order/${item.id}`, header);
     console.log(res.data);
   }
-
-  async function giveOrder() {
-    const res = await axios.patch(
-      api + `/change/order/${item.id}/`,
-      { status: "Выполнен" },
-      header
-    );
-    console.log(res.data);
-  }
-
-  async function confirm() {
-    try {
-      const res = await axios.patch(
-        api + "/change/order/" + item.id + "/",
-        { status: "В обработке" },
-        header
-      );
+  async function confirm(){
+    try{
+      const res = await axios.patch(api+'/change/order/'+ item.id , {status:"В обработке"}, header)
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
