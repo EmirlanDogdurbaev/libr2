@@ -15,6 +15,10 @@ export default function BookForm() {
   const [author, setAuthor] = useState(""); // Add author state
   const [categories, setCategories] = useState([]);
 
+  const [number, setNumber] = useState(0); // Add author state
+
+  
+
   async function fetchCategories() {
     const res = await axios.get(api + "/list/category", header);
     const catArray = res.data.map((item) => ({
@@ -31,6 +35,11 @@ export default function BookForm() {
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
+
+  const handleNumberChange = (e) => {
+    setNumber(e.target.value);
+  };
+
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
@@ -87,13 +96,21 @@ export default function BookForm() {
         value={description}
         onChange={handleDescriptionChange}
       />
-      
+
       <label htmlFor="image">Обложка</label>
       <input
         type="file"
         id="image"
         accept="image/*"
         onChange={handleImageChange}
+      />
+
+      <label htmlFor="invent-number">номер инвертаризации</label>
+      <input
+        type="number"
+        id="invent"
+        value={number}
+        onChange={handleNumberChange}
       />
       <Select
         placeholder="Категории"
