@@ -17,8 +17,6 @@ export default function BookForm() {
 
   const [number, setNumber] = useState(0); // Add author state
 
-  
-
   async function fetchCategories() {
     const res = await axios.get(api + "/list/category", header);
     const catArray = res.data.map((item) => ({
@@ -39,7 +37,6 @@ export default function BookForm() {
   const handleNumberChange = (e) => {
     setNumber(e.target.value);
   };
-
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
@@ -63,7 +60,7 @@ export default function BookForm() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", image); // Append the file directly
+    formData.append("image", image); 
     formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("author", author);
@@ -105,11 +102,11 @@ export default function BookForm() {
         onChange={handleImageChange}
       />
 
-      <label htmlFor="invent-number">номер инвертаризации</label>
+      <label htmlFor="category">номер инвертаризации</label>
       <input
         type="number"
-        id="invent"
-        value={number}
+        id="category"
+        value={category}
         onChange={handleNumberChange}
       />
       <Select
@@ -117,6 +114,15 @@ export default function BookForm() {
         options={categories}
         onChange={(e) => setCategory(e.value)}
       />
+
+      <label htmlFor="invent-number">номер инвертаризации</label>
+      <input
+        type="number"
+        id="invent"
+        value={number}
+        onChange={handleNumberChange}
+      />
+
       <label htmlFor="quantity">Количество</label>
       <input
         type="number"
