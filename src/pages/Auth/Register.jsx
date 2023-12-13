@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "./Auth.module.scss";
 import Button from "../../components/Button/Button";
@@ -14,13 +14,28 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [selectedGroup, setSelectedGroup] = useState("");
+
+  const [group, setGroup] = useState([]);
+
   const { store } = useContext(Context);
 
   function register() {
     store
-      .register(email, password, firstName, lastName, phone)
-      .then(() => location.reload());
+      .register(email, password, firstName, lastName, phone, selectedGroup)
+      .then(() => window.location.reload());
   }
+  useEffect(() => {
+    axios
+      .get("https://orenvadi.pythonanywhere.com/api/v1/list/group/")
+      .then((resp) => {
+        setGroup(resp.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return (
     <div className={styles.Auth}>
       <label htmlFor="email">Email</label>
@@ -67,12 +82,18 @@ function Register() {
         onChange={(e) => setPhone(e.target.value)}
         value={phone}
       />
-      <select name="group" id="group">
-        <option>AIN-1</option>
-        <option>AIN-2</option>
-        <option>AIN-3</option>
+      <select
+        name="group"
+        id="group"
+        onChange={(e) => setSelectedGroup(e.target.value)}
+        value={selectedGroup}
+      >
+        {group.map((option) => (
+          <option key={option.id} value={option.id}>
+            {option.id}
+          </option>
+        ))}
       </select>
-
       <Button action={register}>Ресистрация</Button>
       <Link to={"/login"}>Уже есть аккаунт</Link>
     </div>

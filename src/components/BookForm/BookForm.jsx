@@ -102,26 +102,15 @@ export default function BookForm() {
         onChange={handleImageChange}
       />
 
-      <label htmlFor="category">номер инвертаризации</label>
-      <input
-        type="number"
-        id="category"
-        value={category}
-        onChange={handleNumberChange}
-      />
+      <label htmlFor="category">Категория </label>
+     
       <Select
         placeholder="Категории"
         options={categories}
         onChange={(e) => setCategory(e.value)}
       />
 
-      <label htmlFor="invent-number">номер инвертаризации</label>
-      <input
-        type="number"
-        id="invent"
-        value={number}
-        onChange={handleNumberChange}
-      />
+  
 
       <label htmlFor="quantity">Количество</label>
       <input

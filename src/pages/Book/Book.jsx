@@ -40,7 +40,7 @@ export default function Book() {
   async function orderBook() {
     try {
       const res = await axios.post(
-        api + "/create/order",
+        api + "/create/order/",
         {
           books: [book.id],
           due_time: dueDate,
@@ -57,7 +57,7 @@ export default function Book() {
     console.log(book.id);
     try {
       const res = await axios.post(
-        api + "/create/review",
+        api + "/create/review/",
         {
           text,
           grade,
