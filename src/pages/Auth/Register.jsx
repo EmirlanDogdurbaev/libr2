@@ -90,7 +90,7 @@ function Register() {
       >
         {group.map((option) => (
           <option key={option.id} value={option.id}>
-            {option.id}
+            {option.name}
           </option>
         ))}
       </select>

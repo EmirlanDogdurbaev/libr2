@@ -16,7 +16,7 @@ export default function Book() {
   async function fetchBook() {
     try {
       const res = await axios.get(
-        api + "/change/book/" + params.id,
+        api + "/change/book/" + params.id + "/",
         header
       );
       setBook(res.data);
@@ -28,7 +28,7 @@ export default function Book() {
   async function fetchReviews() {
     try {
       const res = await axios.get(
-        api + "/list/review/" + params.id,
+        api + "/list/review/" + params.id + "/",
         header
       );
       setComments(res.data);

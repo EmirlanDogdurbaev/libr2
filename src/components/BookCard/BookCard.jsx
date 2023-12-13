@@ -18,7 +18,7 @@ export default function BookCard({ data }) {
         {location.pathname !== "/basket" ? (
           <>
             <small>В наличии: {data.quantity}</small>
-            <Link to={`/book/${data.id}`}>Узнать</Link>
+            <Link to={`/book/${data.id}/`}>Узнать</Link>
           </>
         ) : null}
       </div>
