@@ -23,8 +23,7 @@ export default function BasketCard({ item, fetchBook }) {
     // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
 
-
-  
+  console.log(item);
 
   async function rejectedOrder() {
     try {
@@ -41,10 +40,7 @@ export default function BasketCard({ item, fetchBook }) {
 
   async function cancel() {
     try {
-      const res = await axios.delete(
-        api + `/change/order/${item.id}/`,
-        header
-      );
+      const res = await axios.delete(api + `/change/order/${item.id}/`, header);
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
@@ -67,7 +63,7 @@ export default function BasketCard({ item, fetchBook }) {
     try {
       const res = await axios.patch(
         api + `/change/order/${item.id}/`,
-        { status: "Ожидает проверки" },
+        { status: "В обработке" },
         header
       );
       console.log(res.data);
@@ -89,6 +85,9 @@ export default function BasketCard({ item, fetchBook }) {
                 <th>Количество книг</th>
                 <th>статус</th>
                 <th>заказчик</th>
+                <th>взял с</th>
+                <th>вернуть до</th>
+
                 <th>Действия</th>
               </tr>
             </thead>
@@ -100,6 +99,11 @@ export default function BasketCard({ item, fetchBook }) {
                 <td>{book.quantity}</td>
                 <td>{item.status}</td>
                 <td>{item.owner}</td>
+                <td>{new Date(item.due_time).toISOString().split("T")[0]}</td>
+                <td>
+                  {new Date(item.created_time).toISOString().split("T")[0]}
+                </td>
+
                 <td>
                   <div className={styles.confirm_block}>
                     {item.status === "Ожидает проверки" ? (
@@ -107,12 +111,12 @@ export default function BasketCard({ item, fetchBook }) {
                         <Button action={rejectedOrder}>Удалить</Button>
                       </section>
                     ) : null}
-                      {item.status === "Ожидает проверки" ? (
+                    {item.status === "Ожидает проверки" ? (
                       <section className={styles.btn_section}>
                         <Button action={confirm}>Подтвердить</Button>
                       </section>
                     ) : null}
-                      {item.status === "В обработке" ? (
+                    {item.status === "В обработке" ? (
                       <section className={styles.btn_section}>
                         <Button action={giveOrder}>Выдать</Button>
                       </section>
