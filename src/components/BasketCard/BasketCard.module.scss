@@ -1,6 +1,9 @@
 .confirm_block {
   > div {
     margin: 10px 0;
+    >span{
+      color: red;
+    }
   }
 }
 .btn_section {
@@ -50,4 +53,27 @@
   background-color: #337ab7;
   color: white;
   border: none;
+}
+
+
+.BasketCard{
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px 50px;
+  max-width: 50%;
+  margin: 20px auto;
+  >div:first-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  >div:last-child{
+    box-shadow: none!important;
+    background-color: transparent;
+    width: 300px;
+  }
 }

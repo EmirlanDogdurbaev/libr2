@@ -4,13 +4,12 @@ import styles from "./BasketCard.module.scss";
 import axios from "axios";
 import { api } from "../../store/api";
 import { header } from "../../store/header";
-
+import BookCard from "../BookCard/BookCard";
 // eslint-disable-next-line react/prop-types
 export default function BasketCard({ item, fetchBook }) {
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
 
-  console.log(book);
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).status === "Librarian");
 
@@ -23,94 +22,123 @@ export default function BasketCard({ item, fetchBook }) {
     fetchData();
     // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
-  async function removeOrder() {
-    const res = await axios.delete(api + `/change/order/${item.id}`, header);
-    console.log(res.data);
-  }
-  async function confirm(){
-    try{
-      const res = await axios.patch(api+'/change/order/'+ item.id , {status:"В обработке"}, header)
+
+
+  
+
+  async function rejectedOrder() {
+    try {
+      const res = await axios.patch(
+        api + `/change/order/${item.id}/`,
+        { status: "Ошибка" },
+        header
+      );
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
 
+  async function cancel() {
+    try {
+      const res = await axios.delete(
+        api + `/change/order/${item.id}/`,
+        header
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
+  async function giveOrder() {
+    try {
+      const res = await axios.patch(
+        api + `/change/order/${item.id}/`,
+        { status: "Выполнен" },
+        header
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+  async function confirm() {
+    try {
+      const res = await axios.patch(
+        api + `/change/order/${item.id}/`,
+        { status: "Ожидает проверки" },
+        header
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
   return (
-    <div className={styles.tableContainer}>
-      <table className={styles.bookTable}>
-        <thead>
-          <tr>
-            <th>Автор</th>
-            <th>Название книги</th>
-            <th>Рейтинг книги</th>
-            <th>Количество книг</th>
-            <th>статус</th>
-            <th>заказчик</th>
-            <th>Действия</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr key={book.id}>
-            <td>{book.author}</td>
-            <td>{book.title}</td>
-            <td>{book.rating}</td>
-            <td>{book.quantity}</td>
-            <td>{item.status}</td>
-            <td>{item.owner}</td>
-            <td>
-              {isLiber ? (
-                <div className={styles.confirm_block}>
-                  {item.status === "Ожидает проверки" ? (
-                    <section className={styles.btn_section}>
-                      <Button action={confirm}>Подтвердить</Button>
-                    </section>
-                  ) : null}
-                  {item.status === "Ожидает проверки" ? (
-                    <section className={styles.btn_section}>
-                      <Button action={rejectedOrder}>Удалить</Button>
-                    </section>
-                  ) : null}
-                  {item.status === "В обработке" ? (
-                    <section className={styles.btn_section}>
-                      <Button action={giveOrder}>Выдать книгу</Button>
-                    </section>
-                  ) : null}
-                </div>
+    <>
+      {isLiber ? (
+        <div className={styles.tableContainer}>
+          <table className={styles.bookTable}>
+            <a href=""></a>
+            <thead>
+              <tr>
+                <th>Автор</th>
+                <th>Название книги</th>
+                <th>Рейтинг книги</th>
+                <th>Количество книг</th>
+                <th>статус</th>
+                <th>заказчик</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={book.id}>
+                <td>{book.author}</td>
+                <td>{book.title}</td>
+                <td>{book.rating}</td>
+                <td>{book.quantity}</td>
+                <td>{item.status}</td>
+                <td>{item.owner}</td>
+                <td>
+                  <div className={styles.confirm_block}>
+                    {item.status === "Ожидает проверки" ? (
+                      <section className={styles.btn_section}>
+                        <Button action={rejectedOrder}>Удалить</Button>
+                      </section>
+                    ) : null}
+                      {item.status === "Ожидает проверки" ? (
+                      <section className={styles.btn_section}>
+                        <Button action={confirm}>Подтвердить</Button>
+                      </section>
+                    ) : null}
+                      {item.status === "В обработке" ? (
+                      <section className={styles.btn_section}>
+                        <Button action={giveOrder}>Выдать</Button>
+                      </section>
+                    ) : null}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className={styles.BasketCard}>
+          <div>
+            <div>{item.status}</div>
+            <div className={styles.confirm_block}>
+              {item.status === "Ожидает проверки" ||
+              item.status === "В обработке" ? (
+                <section className={styles.btn_section}>
+                  <Button action={cancel}>Отменить</Button>
+                </section>
               ) : null}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </div>
+          </div>
+          <BookCard data={book} />
+        </div>
+      )}
+    </>
   );
 }
-
-// <div className={classes.BasketCard}>
-//   <div>
-//     <div>{item.status}</div>
-//     {isLiber ? (
-//       <div className={classes.confirm_block}>
-//         <div>
-//           От : <span>{item.owner}</span>
-//         </div>
-//         {item.status === "Ожидает проверки" ? (
-//           <section className={classes.btn_section}>
-//             <Button action={confirm}>Подтвердить</Button>
-//           </section>
-//         ) : null}
-//         {item.status === "Ожидает проверки" ? (
-//           <section className={classes.btn_section}>
-//             <Button action={rejectedOrder}>Удалить</Button>
-//           </section>
-//         ) : null}
-//         {item.status === "В обработке" ? (
-//           <section className={classes.btn_section}>
-//             <Button action={giveOrder}>Выдать книгу</Button>
-//           </section>
-//         ) : null}
-//       </div>
-//     ) : null}
-//   </div>
-// <BookCard data={book} />
-// </div>
