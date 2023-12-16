@@ -44,8 +44,12 @@ function Profile() {
         <h3>
           {user.first_name} {user.last_name}
         </h3>
+        
         <p className={classes.blue}>{user.group !== 'Liber' ? user.group : null}</p>
         <p>{user.email}</p>
+        <h4>
+          {user.phone}
+        </h4>
         <button
           className={classes.btn}
           onClick={() => {

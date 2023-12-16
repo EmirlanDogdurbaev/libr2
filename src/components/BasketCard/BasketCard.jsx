@@ -7,8 +7,20 @@ import { header } from "../../store/header";
 import BookCard from "../BookCard/BookCard";
 // eslint-disable-next-line react/prop-types
 export default function BasketCard({ item, fetchBook }) {
+
+  console.log(fetchBook)
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
+
+  const options = { day: "numeric", month: "long" };
+  const date = new Date(item.due_time);
+  const currentDate = new Date();
+  const timeDifference = date - currentDate;
+  const formattedDate = date.toLocaleDateString("ru-Ru", options);
+  const daysDifference =
+    Math.floor(timeDifference / (1000 * 60 * 60 * 24)) <= 0
+      ? "Просрочено"
+      : Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).status === "Librarian");
@@ -23,7 +35,7 @@ export default function BasketCard({ item, fetchBook }) {
     // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
 
-  console.log(item);
+  // console.log(item);
 
   async function rejectedOrder() {
     try {
@@ -32,7 +44,6 @@ export default function BasketCard({ item, fetchBook }) {
         { status: "Ошибка" },
         header
       );
-      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
@@ -81,10 +92,10 @@ export default function BasketCard({ item, fetchBook }) {
               <tr>
                 <th>Автор</th>
                 <th>Название книги</th>
-                <th>Рейтинг книги</th>
                 <th>Количество книг</th>
                 <th>статус</th>
                 <th>заказчик</th>
+                <td>tel</td>
                 <th>взял с</th>
                 <th>вернуть до</th>
 
@@ -95,15 +106,12 @@ export default function BasketCard({ item, fetchBook }) {
               <tr key={book.id}>
                 <td>{book.author}</td>
                 <td>{book.title}</td>
-                <td>{book.rating}</td>
                 <td>{book.quantity}</td>
                 <td>{item.status}</td>
                 <td>{item.owner}</td>
+                <td>{item.phone}</td>
                 <td>{new Date(item.due_time).toISOString().split("T")[0]}</td>
-                <td>
-                  {new Date(item.created_time).toISOString().split("T")[0]}
-                </td>
-
+                <td>{daysDifference}</td>
                 <td>
                   <div className={styles.confirm_block}>
                     {item.status === "Ожидает проверки" ? (
