@@ -40,7 +40,7 @@ export default function BasketCard({ item, fetchBook }) {
   async function rejectedOrder() {
     try {
       const res = await axios.patch(
-        api + `/change/order/${item.id}/`,
+        api + `/order/${item.id}`,
         { status: "Ошибка" },
         header
       );
@@ -51,7 +51,7 @@ export default function BasketCard({ item, fetchBook }) {
 
   async function cancel() {
     try {
-      const res = await axios.delete(api + `/change/order/${item.id}/`, header);
+      const res = await axios.delete(api + `/order/${item.id}`, header);
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
@@ -61,7 +61,7 @@ export default function BasketCard({ item, fetchBook }) {
   async function giveOrder() {
     try {
       const res = await axios.patch(
-        api + `/change/order/${item.id}/`,
+        api + `/order/${item.id}`,
         { status: "Выполнен" },
         header
       );
@@ -73,7 +73,7 @@ export default function BasketCard({ item, fetchBook }) {
   async function confirm() {
     try {
       const res = await axios.patch(
-        api + `/change/order/${item.id}/`,
+        api + `/order/${item.id}`,
         { status: "В обработке" },
         header
       );

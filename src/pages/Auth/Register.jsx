@@ -27,7 +27,7 @@ function Register() {
   }
   useEffect(() => {
     axios
-      .get("https://orenvadi.pythonanywhere.com/api/v1/list/group/")
+      .get("https://orenvadi.pythonanywhere.com/api/v1/group/all")
       .then((resp) => {
         setGroup(resp.data);
       })
@@ -35,6 +35,8 @@ function Register() {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+
 
   return (
     <div className={styles.Auth}>
@@ -90,7 +92,7 @@ function Register() {
       >
         {group.map((option) => (
           <option key={option.id} value={option.id}>
-            {option.name}
+            {option.title}
           </option>
         ))}
       </select>

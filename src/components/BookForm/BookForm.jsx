@@ -18,7 +18,7 @@ export default function BookForm() {
   const [number, setNumber] = useState(0); // Add author state
 
   async function fetchCategories() {
-    const res = await axios.get(api + "/list/category/", header);
+    const res = await axios.get(api + "/category/all", header);
     const catArray = res.data.map((item) => ({
       label: item.title,
       value: item.id,
@@ -64,9 +64,12 @@ export default function BookForm() {
     formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("author", author);
+    // formData.append("subcategory", subcategory);
+    // formData.append("author", author);
+    // formData.append("author", author);
 
     try {
-      const res = await axios.post(`${api}/create/book/`, formData, header);
+      const res = await axios.post(`${api}/book/create`, formData, header);
       console.log(res.data);
     } catch (e) {
       console.log(e.message);

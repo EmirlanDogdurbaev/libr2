@@ -29,16 +29,16 @@ export default class Store {
   }
   async login(email, password) {
     try {
-      const response = await axios.post(`${api}/login/`, { email, password });
+      const response = await axios.post(`${api}/login`, { email, password });
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem(
         "user",
         JSON.stringify({
           email: response.data.user.email,
-          first_name: response.data.user.first_name,
-          last_name: response.data.user.last_name,
+          firstname: response.data.user.firstname,
+          lastname: response.data.user.lastname,
           phone: response.data.user.phone,
-          status: response.data.user.status,
+          role: response.data.user.role,
           group: response.data.user.group,
         })
       );
@@ -46,13 +46,13 @@ export default class Store {
       console.error(e);
     }
   }
-  async register(email, password, first_name, last_name, phone, group) {
+  async register(email, password, firstname, lastname, phone, group) {
     try {
-      const response = await axios.post(`${api}/register/`, {
+      const response = await axios.post(`${api}/register`, {
         email,
         password,
-        first_name,
-        last_name,
+        firstname,
+        lastname,
         phone,
         group,
       });
@@ -61,10 +61,10 @@ export default class Store {
         "user",
         JSON.stringify({
           email,
-          first_name,
-          last_name,
+          firstname,
+          lastname,
           phone,
-          status: response.data.user.status,
+          role: response.data.user.role,
           group: response.data.user.group,
         })
       );
