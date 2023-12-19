@@ -8,7 +8,6 @@ import BookCard from "../BookCard/BookCard";
 // eslint-disable-next-line react/prop-types
 export default function BasketCard({ item, fetchBook }) {
 
-  console.log(fetchBook)
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
 
@@ -35,7 +34,6 @@ export default function BasketCard({ item, fetchBook }) {
     // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
 
-  // console.log(item);
 
   async function rejectedOrder() {
     try {

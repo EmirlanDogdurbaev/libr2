@@ -17,24 +17,23 @@ export default function Book() {
     try {
       const res = await axios.get(api + "/book/" + params.id, header);
       setBook(res.data);
-      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
   async function fetchReviews() {
     try {
-      const res = await axios.get(api + "/review/" + params.id, header);
+      const res = await axios.get(api + "/review/book/" + params.id, header);
       setComments(res.data);
-      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
+
   async function orderBook() {
     try {
       const res = await axios.post(
-        api + "/create/order/",
+        `${api}/order/create`,
         {
           books: [book.id],
           due_time: dueDate,
@@ -42,13 +41,12 @@ export default function Book() {
         header
       );
       console.log(res.data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   }
   async function sendReview(e) {
     e.preventDefault();
-    console.log(book.id);
     try {
       const res = await axios.post(
         api + "/create/review/",
@@ -69,8 +67,6 @@ export default function Book() {
     fetchBook();
     fetchReviews();
   }, []);
-
-  console.log(book);
 
   const handleDownload = () => {
     window.open(book.e_book, "_blank");

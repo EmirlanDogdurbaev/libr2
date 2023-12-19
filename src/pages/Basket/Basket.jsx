@@ -1,15 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { api } from "../../store/api";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import classes from "./Basket.module.scss";
 import { header } from "../../store/header";
+import { Context } from "../../main";
 export default function Basket() {
   const [orders, setOrders] = useState([]);
 
   async function fetchOrders() {
     try {
-      const response = await axios.get(api + "/list/order", header);
+      const response = await axios.get(api + "/order/all", header);
       setOrders(response.data);
       console.log(response.data); 
     } catch (e) {
@@ -19,7 +20,7 @@ export default function Basket() {
 
   async function fetchBook(id) {
     try {
-      const res = await axios.get(api + "/change/book/" + id , header);
+      const res = await axios.get(api + "/book/" + id , header);
       return res.data;
     } catch (error) {
       console.log(error.message);
