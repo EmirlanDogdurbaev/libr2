@@ -116,7 +116,7 @@ export default function BookForm() {
     formData.append("author", author);
     formData.append("language", selectedLanguage);
     formData.append("subcategory", subcategories);
-    formData.append("file", file);
+    formData.append("e_book", file);
     formData.append("edition_year", year);
     formData.append("purchase_price", price);
     formData.append("purchase_time", time);
