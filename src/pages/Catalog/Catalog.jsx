@@ -12,7 +12,7 @@ function Catalog() {
 
   useEffect(() => {
     console.log("render");
-    axios.get(api + "/list/book/").then((res) => {
+    axios.get(api + "/book/all").then((res) => {
       if (store.type === "category") {
         if (store.category !== "") {
           setData(res.data.filter((item) => item.category === store.category));
