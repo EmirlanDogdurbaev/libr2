@@ -22,7 +22,7 @@ export default function BasketCard({ item, fetchBook }) {
       : Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   useEffect(() => {
-    setIsLiber(JSON.parse(localStorage.getItem("user")).status === "Librarian");
+    setIsLiber(JSON.parse(localStorage.getItem("user")).role === "Librarian");
 
     async function fetchData() {
       // eslint-disable-next-line react/prop-types
@@ -80,6 +80,9 @@ export default function BasketCard({ item, fetchBook }) {
       console.log(e.message);
     }
   }
+
+
+  console.log(item)
   return (
     <>
       {isLiber ? (
@@ -93,7 +96,7 @@ export default function BasketCard({ item, fetchBook }) {
                 <th>Количество книг</th>
                 <th>статус</th>
                 <th>заказчик</th>
-                <td>tel</td>
+                <th>tel</th>
                 <th>взял с</th>
                 <th>вернуть до</th>
 
@@ -106,8 +109,8 @@ export default function BasketCard({ item, fetchBook }) {
                 <td>{book.title}</td>
                 <td>{book.quantity}</td>
                 <td>{item.status}</td>
-                <td>{item.owner}</td>
-                <td>{item.phone}</td>
+                <td>{item.owner_firstname}  <br/>{item.owner_lastname}</td>
+                <td>{item.owner_phone}</td>
                 <td>{new Date(item.due_time).toISOString().split("T")[0]}</td>
                 <td>{daysDifference}</td>
                 <td>
