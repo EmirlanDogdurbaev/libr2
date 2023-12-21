@@ -78,13 +78,11 @@ export default function BasketCard({ item, fetchBook }) {
   }
 
 
-  console.log(item)
   return (
     <>
       {isLiber ? (
         <div className={styles.tableContainer}>
           <table className={styles.bookTable}>
-            <a href=""></a>
             <thead>
               <tr>
                 <th>Автор</th>

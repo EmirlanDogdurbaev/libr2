@@ -11,7 +11,6 @@ function Catalog() {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    console.log("render");
     axios.get(api + "/book/all").then((res) => {
       if (store.type === "category") {
         if (store.category !== "") {

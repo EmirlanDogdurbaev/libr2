@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "../../store/api";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import classes from "./Basket.module.scss";
 import { header } from "../../store/header";
-import { Context } from "../../main";
+
 export default function Basket() {
   const [orders, setOrders] = useState([]);
 
@@ -12,7 +12,6 @@ export default function Basket() {
     try {
       const response = await axios.get(api + "/order/all", header);
       setOrders(response.data);
-      console.log(response.data);
     } catch (e) {
       console.log(e.message);
     }
@@ -29,15 +28,32 @@ export default function Basket() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      await fetchOrders();
-    }
-    fetchData();
+    fetchOrders();
   }, []);
+
+  // Функция для сортировки заказов
+  const sortOrders = (criteria) => {
+    switch (criteria) {
+      case "newest":
+        setOrders([...orders].sort((a, b) => b.id - a.id));
+        break;
+      case "oldest":
+        setOrders([...orders].sort((a, b) => a.id - b.id));
+        break;
+      default:
+        setOrders([...orders]);
+        break;
+    }
+  };
 
   return (
     <div className={classes.Basket}>
       <span>Basket</span>
+      <button onClick={() => sortOrders("newest")}>Сортировать по новым</button>
+      <button onClick={() => sortOrders("oldest")}>
+        Сортировать по старым
+      </button>
+
       {orders.map((item, id) => (
         <div key={id}>
           <BasketCard item={item} fetchBook={fetchBook} />
