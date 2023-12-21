@@ -3,7 +3,6 @@ import Categories from "../../components/Categories/Categories";
 import BookCard from "../../components/BookCard/BookCard";
 import axios from "axios";
 import { api } from "../../store/api";
-import Slider from "../../components/Slider/Slider";
 import { Context } from "../../main";
 import { observer } from "mobx-react-lite";
 
@@ -13,7 +12,7 @@ function Catalog() {
 
   useEffect(() => {
     console.log("render");
-    axios.get(api + "/list/book").then((res) => {
+    axios.get(api + "/book/all").then((res) => {
       if (store.type === "category") {
         if (store.category !== "") {
           setData(res.data.filter((item) => item.category === store.category));
@@ -54,17 +53,19 @@ function Catalog() {
     });
   }, [store.category, store.filter, store.search]);
   return (
-    <div style={{
-      margin: "0 auto",
-      maxWidth:"1300px"
-    }}>
+    <div
+      style={{
+        margin: "0 auto",
+        maxWidth: "1300px",
+      }}
+    >
       <Categories />
-      <div style={{
-        display:"flex",
-        flexWrap:"wrap",
-        
-
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
         {data.map((item) => {
           return <BookCard data={item} />;
         })}

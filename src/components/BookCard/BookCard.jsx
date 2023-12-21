@@ -5,6 +5,7 @@ import Stars from "../Stars/Stars";
 
 export default function BookCard({ data }) {
   const location = useLocation();
+
   return (
     <div className={classes.BookCard}>
       <div className={classes.info}>

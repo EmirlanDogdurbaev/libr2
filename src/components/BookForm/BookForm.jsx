@@ -14,9 +14,28 @@ export default function BookForm() {
   const [category, setCategory] = useState("");
   const [author, setAuthor] = useState(""); // Add author state
   const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState("asa");
+
+  const [number, setNumber] = useState(0); // Add author state
+
+  const [inventNumber, setInventNumber] = useState(0);
+  const [file, setFile] = useState(null);
+
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [year, setYear] = useState("");
+
+  const [price, setPrice] = useState("");
+  const [time, setTime] = useState("");
+
+  const languages = ["Кыргызский", "Русский", "Английский", "Немецкий"];
+
+  const data = languages.map((item, index) => ({
+    label: item,
+    value: item,
+  }));
 
   async function fetchCategories() {
-    const res = await axios.get(api + "/list/category", header);
+    const res = await axios.get(api + "/category/all", header);
     const catArray = res.data.map((item) => ({
       label: item.title,
       value: item.id,
@@ -24,12 +43,41 @@ export default function BookForm() {
     setCategories(catArray);
   }
 
+  async function fetchSubCategories() {
+    const res = await axios.get(api + "/subcategory/all", header);
+    const catArray = res.data.map((item) => ({
+      label: item.title,
+      value: item.id,
+    }));
+    setSubcategories(catArray);
+  }
+
+  const handleLanguageChange = (selectedOption) => {
+    setSelectedLanguage(selectedOption.value);
+  };
+
   useEffect(() => {
     fetchCategories();
+    fetchSubCategories();
   }, []);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+  };
+  const handleEditionYear = (e) => {
+    setYear(e.target.value);
+  };
+
+  const handlePurchaseTime = (e) => {
+    setTime(e.target.value);
+  };
+
+  const handlePurchasePrice = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleNumberChange = (e) => {
+    setNumber(e.target.value);
   };
 
   const handleDescriptionChange = (e) => {
@@ -40,8 +88,16 @@ export default function BookForm() {
     setImage(e.target.files[0]);
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const handleQuantityChange = (e) => {
     setQuantity(parseInt(e.target.value, 10));
+  };
+
+  const InventNumberChange = (e) => {
+    setInventNumber(parseInt(e.target.value, 10));
   };
 
   const handleAuthorChange = (e) => {
@@ -54,13 +110,20 @@ export default function BookForm() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", image); // Append the file directly
+    formData.append("image", image);
     formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("author", author);
+    formData.append("language", selectedLanguage);
+    formData.append("subcategory", subcategories);
+    formData.append("e_book", file);
+    formData.append("edition_year", year);
+    formData.append("purchase_price", price);
+    formData.append("purchase_time", time);
+    formData.append("inventory_number", inventNumber);
 
     try {
-      const res = await axios.post(`${api}/create/book/`, formData, header);
+      const res = await axios.post(`${api}/book/create`, formData, header);
       console.log(res.data);
     } catch (e) {
       console.log(e.message);
@@ -87,7 +150,7 @@ export default function BookForm() {
         value={description}
         onChange={handleDescriptionChange}
       />
-      
+
       <label htmlFor="image">Обложка</label>
       <input
         type="file"
@@ -95,10 +158,39 @@ export default function BookForm() {
         accept="image/*"
         onChange={handleImageChange}
       />
+
+      <label htmlFor="image">тест</label>
+      <input
+        type="file"
+        id="image"
+        accept="file/*"
+        onChange={handleFileChange}
+      />
+
+      <label htmlFor="category">Категория </label>
       <Select
         placeholder="Категории"
         options={categories}
         onChange={(e) => setCategory(e.value)}
+      />
+      <label htmlFor="category">Под Категория </label>
+      <Select
+        placeholder="Под Категория"
+        options={subcategories}
+        onChange={(e) => setSubcategories(e.value)}
+      />
+      <label htmlFor="category">Язык </label>
+      <Select
+        placeholder="Язык"
+        options={data}
+        onChange={handleLanguageChange}
+      />
+      <label htmlFor="invent-number">Инвентарный номер</label>
+      <input
+        type="number"
+        id="invent-number"
+        value={inventNumber}
+        onChange={InventNumberChange}
       />
       <label htmlFor="quantity">Количество</label>
       <input
@@ -113,6 +205,30 @@ export default function BookForm() {
         id="author"
         value={author}
         onChange={handleAuthorChange}
+      />
+
+      <label htmlFor="edition-year">year</label>
+      <input
+        type="text"
+        id="author"
+        value={year}
+        onChange={handleEditionYear}
+      />
+
+      <label htmlFor="edition-year">time</label>
+      <input
+        type="text"
+        id="author"
+        value={time}
+        onChange={handlePurchaseTime}
+      />
+
+      <label htmlFor="edition-year">price</label>
+      <input
+        type="text"
+        id="author"
+        value={price}
+        onChange={handlePurchasePrice}
       />
 
       <Button action={null}>Создать книгу</Button>

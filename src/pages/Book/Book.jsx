@@ -12,35 +12,28 @@ export default function Book() {
   const [dueDate, setDueDate] = useState("");
   const [text, setText] = useState("");
   const [grade, setGrade] = useState(0);
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
   async function fetchBook() {
     try {
-      const res = await axios.get(
-        api + "/change/book/" + params.id,
-        header
-      );
+      const res = await axios.get(api + "/book/" + params.id, header);
       setBook(res.data);
-      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
   async function fetchReviews() {
     try {
-      const res = await axios.get(
-        api + "/list/review/" + params.id,
-        header
-      );
+      const res = await axios.get(api + "/review/book/" + params.id, header);
       setComments(res.data);
-      console.log(res.data);
     } catch (e) {
       console.log(e.message);
     }
   }
+
   async function orderBook() {
     try {
       const res = await axios.post(
-        api + "/create/order",
+        `${api}/order/create`,
         {
           books: [book.id],
           due_time: dueDate,
@@ -48,16 +41,15 @@ export default function Book() {
         header
       );
       console.log(res.data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   }
   async function sendReview(e) {
     e.preventDefault();
-    console.log(book.id);
     try {
       const res = await axios.post(
-        api + "/create/review",
+        api + "/create/review/",
         {
           text,
           grade,
@@ -76,6 +68,10 @@ export default function Book() {
     fetchReviews();
   }, []);
 
+  const handleDownload = () => {
+    window.open(book.e_book, "_blank");
+  };
+
   return (
     <div className={cl.Book}>
       <section>
@@ -85,6 +81,7 @@ export default function Book() {
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
             <p id="content">{book.description}</p>
+            <button onClick={handleDownload}>Скачать электронную книгу</button>
           </div>
           <div className={cl.rating}>
             <h3>{book.rating}</h3>
@@ -122,14 +119,15 @@ export default function Book() {
         </div>
         <h3 className={cl.response}>Отзывы</h3>
         <div className={cl.comment_cont}>
-          {comments.map((i, id)=>{
-            return <div key={id}>
-            <h2>{i.author}</h2>
+          {comments.map((i, id) => {
+            return (
+              <div key={id}>
+                <h2>{i.author}</h2>
 
-            <Stars amount={i.grade} book={book} />
-            <p>{i.text}
-            </p>
-          </div>
+                <Stars amount={i.grade} book={book} />
+                <p>{i.text}</p>
+              </div>
+            );
           })}
         </div>
       </section>

@@ -10,8 +10,10 @@ function Profile() {
   const [user, setUser] = useState([]);
   async function profileOrders() {
     try {
-      const res = await axios.get(api + "/list/order", header);
-      const confirmedOrders = res.data.filter((item)=>item.status === "Выполнен")
+      const res = await axios.get(api + "/order/all", header);
+      const confirmedOrders = res.data.filter(
+        (item) => item.status === "Выполнен"
+      );
       setOrders(confirmedOrders);
     } catch (e) {
       console.log(e);
@@ -19,11 +21,11 @@ function Profile() {
   }
   async function fetchBook(id) {
     try {
-      const res = await axios.get(api + "/change/book/"+id, header);
-      return res.data
+      const res = await axios.get(api + "/book/" + id, header);
+      return res.data;
     } catch (e) {
       console.log(e);
-      return null
+      return null;
     }
   }
 
@@ -44,21 +46,32 @@ function Profile() {
         <h3>
           {user.first_name} {user.last_name}
         </h3>
-        <p className={classes.blue}>{user.group !== 'Liber' ? user.group : null}</p>
+
+        <p className={classes.blue}>
+          {user.group !== "Liber" ? user.group : null}
+        </p>
         <p>{user.email}</p>
+        <h4>{user.phone}</h4>
         <button
           className={classes.btn}
           onClick={() => {
             localStorage.clear();
             location.reload();
-          }}>
+          }}
+        >
           LogOut
         </button>
       </div>
-      {user.status !== 'Librarian' ? (
+      {user.status !== "Librarian" ? (
         <div className={classes.second}>
           {orders.map((data) => {
-            return <ProfileBookCard data={data} fetchBook={fetchBook} key={data.id} />;
+            return (
+              <ProfileBookCard
+                data={data}
+                fetchBook={fetchBook}
+                key={data.id}
+              />
+            );
           })}
         </div>
       ) : null}
