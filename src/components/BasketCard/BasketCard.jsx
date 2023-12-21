@@ -23,15 +23,11 @@ export default function BasketCard({ item, fetchBook }) {
 
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).role === "Librarian");
-
     async function fetchData() {
-      // eslint-disable-next-line react/prop-types
       const bookData = await fetchBook(item.books[0]);
       setBook(bookData || {});
     }
-
     fetchData();
-    // eslint-disable-next-line react/prop-types
   }, [item.books, fetchBook]);
 
 

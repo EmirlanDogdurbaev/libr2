@@ -10,7 +10,7 @@ export default function Categories() {
   const { store } = useContext(Context);
   useEffect(() => {
     axios
-      .get(api + "/list/category/", header)
+      .get(api + "/category/all-", header)
       .then((res) => {
         setCategories(res.data);
       });

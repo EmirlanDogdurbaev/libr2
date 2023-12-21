@@ -67,7 +67,7 @@ function Catalog() {
         }}
       >
         {data.map((item) => {
-          return <BookCard data={item} />;
+          return <BookCard data={item} key={item.id}/>;
         })}
       </div>
     </div>
