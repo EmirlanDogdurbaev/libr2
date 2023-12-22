@@ -72,4 +72,15 @@ export default class Store {
       console.error(e.message);
     }
   }
+
+  async refreshToken(refreshToken) {
+    try {
+      const response = await axios.post(`${api}/activate/refresh/token`, {
+        refresh_token: refreshToken,
+      });
+      localStorage.setItem("token", response.data.access_token);
+    } catch (error) {
+      console.error("Ошибка при обновлении токена:", error.message);
+    }
+  }
 }
