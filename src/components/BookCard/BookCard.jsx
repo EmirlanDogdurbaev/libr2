@@ -1,7 +1,7 @@
-import React from "react";
-import classes from "./BookCard.module.scss";
-import { Link, useLocation } from "react-router-dom";
-import Stars from "../Stars/Stars";
+import React from 'react';
+import classes from './BookCard.module.scss';
+import { Link, useLocation } from 'react-router-dom';
+import Stars from '../Stars/Stars';
 
 export default function BookCard({ data }) {
   const location = useLocation();
@@ -14,7 +14,7 @@ export default function BookCard({ data }) {
         <div className={classes.rating}>
           <Stars amount={data.rating} />
         </div>
-        {location.pathname !== "/basket" ? (
+        {location.pathname !== '/basket' ? (
           <>
             <small>В наличии: {data.quantity}</small>
             <Link to={`/book/${data.id}`}>Узнать</Link>
