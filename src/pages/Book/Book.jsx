@@ -1,21 +1,21 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { api } from "../../store/api";
-import cl from "./Book.module.scss";
-import Stars from "../../components/Stars/Stars";
-import { header } from "../../store/header";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { api } from '../../store/api';
+import cl from './Book.module.scss';
+import Stars from '../../components/Stars/Stars';
+import { header } from '../../store/header';
 
-export default function Book() {
+export default function Book({ item }) {
   const params = useParams();
   const [book, setBook] = useState({});
-  const [dueDate, setDueDate] = useState("");
-  const [text, setText] = useState("");
+  const [dueDate, setDueDate] = useState('');
+  const [text, setText] = useState('');
   const [grade, setGrade] = useState(0);
   const [comments, setComments] = useState([]);
   async function fetchBook() {
     try {
-      const res = await axios.get(api + "/book/" + params.id, header);
+      const res = await axios.get(api + '/book/' + params.id, header);
       setBook(res.data);
     } catch (e) {
       console.log(e.message);
@@ -23,7 +23,7 @@ export default function Book() {
   }
   async function fetchReviews() {
     try {
-      const res = await axios.get(api + "/review/book/" + params.id, header);
+      const res = await axios.get(api + '/review/book/' + params.id, header);
       setComments(res.data);
     } catch (e) {
       console.log(e.message);
@@ -38,7 +38,7 @@ export default function Book() {
           books: [book.id],
           due_time: dueDate,
         },
-        header
+        header,
       );
       console.log(res.data);
     } catch (error) {
@@ -49,13 +49,13 @@ export default function Book() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        api + "/create/review/",
+        api + '/create/review/',
         {
           text,
           grade,
           book: book.id,
         },
-        header
+        header,
       );
       console.log(res.data);
     } catch (e) {
@@ -69,7 +69,7 @@ export default function Book() {
   }, []);
 
   const handleDownload = () => {
-    window.open(book.e_book, "_blank");
+    window.open(book.e_book, '_blank');
   };
 
   return (
@@ -88,25 +88,18 @@ export default function Book() {
             <div>
               <Stars amount={book.rating} book={book} />
             </div>
-            <div>
+            <div className={cl.dateDiv}>
               <label>Верну до</label>
               <input type="date" onChange={(e) => setDueDate(e.target.value)} />
-              <small>В наличии: 3</small>
+              <small>В наличии: 292</small>
               <button onClick={orderBook}>Заказать</button>
             </div>
           </div>
         </article>
         <div className={cl.CommentBtn}>
           <form onSubmit={(e) => sendReview(e)}>
-            <label htmlFor="comment">
-              На сколько это книга вам понравилось?
-            </label>
-            <Stars
-              amount={0}
-              book={book}
-              clickable={true}
-              setGrade={setGrade}
-            />
+            <label htmlFor="comment">На сколько это книга вам понравилось?</label>
+            <Stars amount={0} book={book} clickable={true} setGrade={setGrade} />
             <textarea
               type="text"
               id="comment"

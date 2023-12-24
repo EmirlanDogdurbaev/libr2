@@ -151,10 +151,15 @@
   .SearchBar {
     div {
       width: 500px;
+      padding: 0px 20px 0px 20px;
 
       input {
-        width: 300px !important;
+        width: 250px !important;
       }
     }
+    // .test{
+    //  max-width: 50px;
+    //  height: 30px;
+    // }
   }
 }
