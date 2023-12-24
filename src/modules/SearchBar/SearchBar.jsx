@@ -1,27 +1,27 @@
-import styles from "./SearchBar.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
-import Select from "react-select";
-import { useContext, useState } from "react";
-import { Context } from "../../main";
+import styles from './SearchBar.module.scss';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import { useContext, useState } from 'react';
+import { Context } from '../../main';
 const SearchBar = (props) => {
   const { store } = useContext(Context);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const date = [
-    { label: "Самые новые", value: "newer" },
-    { label: "Самые старые", value: "older" },
+    { label: 'Самые новые', value: 'newer' },
+    { label: 'Самые старые', value: 'older' },
   ];
   const popularity = [
-    { label: "Менее популярные", value: "popular" },
-    { label: "Более популярные", value: "not" },
+    { label: 'Менее популярные', value: 'popular' },
+    { label: 'Более популярные', value: 'not' },
   ];
   function filter(e) {
     store.setFilter(e.value);
-    store.setType("filter");
+    store.setType('filter');
   }
   function submitSearch() {
     store.setSearch(search);
-    setSearch("");
-    store.setType("search");
+    setSearch('');
+    store.setType('search');
   }
 
   const toggle = props.toggleClassName;
@@ -36,7 +36,7 @@ const SearchBar = (props) => {
             placeholder="search for something... "
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onClick={()=>navigate('/catalog')}
+            onClick={() => navigate('/catalog')}
           />
           <button onClick={submitSearch}>search </button>
         </form>
@@ -44,14 +44,14 @@ const SearchBar = (props) => {
         {location.pathname === '/catalog' ? (
           <>
             <Select
-              placeholder={"По дате"}
+              placeholder={'По дате'}
               options={date}
               onChange={(e) => filter(e)}
               className={styles.test}
             />
             <Select
-             className={styles.test}
-              placeholder={"По популярности"}
+              className={styles.test}
+              placeholder={'По популярности'}
               options={popularity}
               onChange={(e) => filter(e)}
             />
