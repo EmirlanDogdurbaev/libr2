@@ -125,6 +125,18 @@ export default function BookForm() {
     try {
       const res = await axios.post(`${api}/book/create`, formData, header);
       console.log(res.data);
+      setTitle("");
+      setDescription("");
+      setImage(null);
+      setQuantity(0);
+      setCategory("");
+      setAuthor("");
+      setSelectedLanguage("");
+      setYear("");
+      setPrice("");
+      setTime("");
+      setInventNumber(0);
+      setFile(null);
     } catch (e) {
       console.log(e.message);
     }
@@ -159,7 +171,7 @@ export default function BookForm() {
         onChange={handleImageChange}
       />
 
-      <label htmlFor="image">тест</label>
+      <label htmlFor="image">Электронный вариант книги</label>
       <input
         type="file"
         id="image"
@@ -207,23 +219,25 @@ export default function BookForm() {
         onChange={handleAuthorChange}
       />
 
-      <label htmlFor="edition-year">year</label>
+      <label htmlFor="year">year</label>
       <input
+        placeholder="2004"
         type="text"
         id="author"
         value={year}
         onChange={handleEditionYear}
       />
 
-      <label htmlFor="edition-year">time</label>
+      <label htmlFor="edition-year">Год издания </label>
       <input
+        placeholder="2004-12-11"
         type="text"
         id="author"
         value={time}
         onChange={handlePurchaseTime}
       />
 
-      <label htmlFor="edition-year">price</label>
+      <label htmlFor="edition-year">закупочная цена</label>
       <input
         type="text"
         id="author"
