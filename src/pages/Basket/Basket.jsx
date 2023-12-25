@@ -81,7 +81,7 @@ export default function Basket() {
 
   return (
     <div className={classes.Basket}>
-      <span>Basket</span>
+      <span>Страница запросов на книги</span>
       {/* Кнопки для сортировки */}
       {JSON.parse(localStorage.getItem("user")).role == "Librarian" ? (
         <>
@@ -156,8 +156,6 @@ export default function Basket() {
           ))}
         </>
       )}
-
-      {/* Отображение заказов */}
     </div>
   );
 }
