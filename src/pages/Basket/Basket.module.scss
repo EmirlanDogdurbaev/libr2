@@ -1,12 +1,11 @@
-.Basket{
+.Basket {
   text-align: center;
-  >span{
+  > span {
     font-size: 32px;
     margin: 30px 0;
     display: block;
   }
 }
-
 
 /* Basket.module.scss */
 
@@ -40,5 +39,37 @@
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0073b1;
+  }
+}
+
+.tableContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  .bookTable {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > section {
+      width: 90%;
+      margin: 10px auto 0;
+      > .th {
+        display: flex;
+        justify-content: space-between;
+        background-color: beige;
+        align-items: center;
+        > li {
+          border: 1px solid black;
+          display: inline-block;
+          padding: 10px;
+          height: 70px;
+          width: 122px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
   }
 }

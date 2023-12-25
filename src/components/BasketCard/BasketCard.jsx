@@ -7,19 +7,12 @@ import { header } from "../../store/header";
 import BookCard from "../BookCard/BookCard";
 // eslint-disable-next-line react/prop-types
 export default function BasketCard({ item, fetchBook }) {
-
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
 
-  const options = { day: "numeric", month: "long" };
+  const options = { day: "numeric", monli: "long" };
   const date = new Date(item.due_time);
-  const currentDate = new Date();
-  const timeDifference = date - currentDate;
-  const formattedDate = date.toLocaleDateString("ru-Ru", options);
-  const daysDifference =
-    Math.floor(timeDifference / (1000 * 60 * 60 * 24)) <= 0
-      ? "Просрочено"
-      : Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const currenliate = new Date();
 
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).role === "Librarian");
@@ -29,7 +22,6 @@ export default function BasketCard({ item, fetchBook }) {
     }
     fetchData();
   }, [item.books, fetchBook]);
-
 
   async function rejectedOrder() {
     try {
@@ -77,59 +69,47 @@ export default function BasketCard({ item, fetchBook }) {
     }
   }
 
-
   return (
     <>
       {isLiber ? (
-        <div className={styles.tableContainer}>
-          <table className={styles.bookTable}>
-            <thead>
-              <tr>
-                <th>Автор</th>
-                <th>Название книги</th>
-                <th>Количество книг</th>
-                <th>статус</th>
-                <th>заказчик</th>
-                <th>tel</th>
-                <th>взял с</th>
-                <th>вернуть до</th>
-
-                <th>Действия</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr key={book.id}>
-                <td>{book.author}</td>
-                <td>{book.title}</td>
-                <td>{book.quantity}</td>
-                <td>{item.status}</td>
-                <td>{item.owner_firstname}  <br/>{item.owner_lastname}</td>
-                <td>{item.owner_phone}</td>
-                <td>{new Date(item.due_time).toISOString().split("T")[0]}</td>
-                <td>{daysDifference}</td>
-                <td>
+        
+            <div className={styles.tbody}>
+              <ul key={book.id} className={styles["table_row"]}>
+                <li>{book.author}</li>
+                <li>{book.title}</li>
+                <li>{book.quantity}</li>
+                <li>{item.status}</li>
+                <li>
+                  {item.owner_firstname} <br />
+                  {item.owner_lastname}
+                </li>
+                <li>{item.owner_phone}</li>
+                <li>
+                  {new Date(item.created_time).toISOString().split("T")[0]}
+                </li>
+                <li>{new Date(item.due_time).toISOString().split("T")[0]}</li>
+                <li>
                   <div className={styles.confirm_block}>
                     {item.status === "Ожидает проверки" ? (
-                      <section className={styles.btn_section}>
-                        <Button action={rejectedOrder}>Удалить</Button>
-                      </section>
+                      <button className={styles.Button} onClick={rejectedOrder}>
+                        Отказать
+                      </button>
                     ) : null}
                     {item.status === "Ожидает проверки" ? (
-                      <section className={styles.btn_section}>
-                        <Button action={confirm}>Подтвердить</Button>
-                      </section>
+                      <button className={styles.Button} onClick={confirm}>
+                        Подтвердить
+                      </button>
                     ) : null}
                     {item.status === "В обработке" ? (
-                      <section className={styles.btn_section}>
-                        <Button action={giveOrder}>Выдать</Button>
-                      </section>
+                      <button className={styles.Button} onClick={giveOrder}>
+                        Выдать
+                      </button>
                     ) : null}
                   </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                </li>
+              </ul>
+            </div>
+        
       ) : (
         <div className={styles.BasketCard}>
           <div>

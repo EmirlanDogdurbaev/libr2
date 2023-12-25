@@ -125,11 +125,28 @@ export default function Basket() {
       ) : null}
 
       {/* Отображение заказов */}
-      {orders.map((item, id) => (
-        <div key={id}>
-          <BasketCard item={item} fetchBook={fetchBook} />
+      <div className={classes.tableContainer}>
+        <div className={classes.bookTable}>
+          <section>
+            <ul className={classes.th}>
+              <li>Автор</li>
+              <li>Назв-е книги</li>
+              <li>Кол-во книг</li>
+              <li>статус</li>
+              <li>заказчик</li>
+              <li>телефон</li>
+              <li>взял</li>
+              <li>вернет</li>
+              <li>Действия</li>
+            </ul>
+          </section>
+          {orders.map((item, id) => (
+            <div key={id}>
+              <BasketCard item={item} fetchBook={fetchBook} />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
