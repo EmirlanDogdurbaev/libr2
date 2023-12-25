@@ -185,7 +185,7 @@ export default function BookForm() {
         options={categories}
         onChange={(e) => setCategory(e.value)}
       />
-      <label htmlFor="category">Под Категория </label>
+      <label htmlFor="category">Подкатегория </label>
       <Select
         placeholder="Под Категория"
         options={subcategories}
@@ -219,7 +219,7 @@ export default function BookForm() {
         onChange={handleAuthorChange}
       />
 
-      <label htmlFor="year">year</label>
+      <label htmlFor="year">Год издания</label>
       <input
         placeholder="2004"
         type="text"
@@ -228,7 +228,7 @@ export default function BookForm() {
         onChange={handleEditionYear}
       />
 
-      <label htmlFor="edition-year">Год издания </label>
+      <label htmlFor="edition-year">Дата закупки </label>
       <input
         placeholder="2004-12-11"
         type="text"
@@ -237,7 +237,7 @@ export default function BookForm() {
         onChange={handlePurchaseTime}
       />
 
-      <label htmlFor="edition-year">закупочная цена</label>
+      <label htmlFor="edition-year">Закупочная цена</label>
       <input
         type="text"
         id="author"
