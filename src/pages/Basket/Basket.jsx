@@ -84,69 +84,80 @@ export default function Basket() {
       <span>Basket</span>
       {/* Кнопки для сортировки */}
       {JSON.parse(localStorage.getItem("user")).role == "Librarian" ? (
-        <div className={classes.ButtonsContainer}>
-          <button
-            onClick={() => sortOrders("def")}
-            className={classes.SortButton}
-          >
-            Посмотерть все
-          </button>
-          <button
-            onClick={() => sortOrders("newest")}
-            className={classes.SortButton}
-          >
-            Сортировать по новым
-          </button>
-          <button
-            onClick={() => sortOrders("oldest")}
-            className={classes.SortButton}
-          >
-            Сортировать по старым
-          </button>
-          <button
-            onClick={() => sortOrders("awaiting")}
-            className={classes.SortButton}
-          >
-            Сортировать по Ожиданию
-          </button>
-          <button
-            onClick={() => sortOrders("completed")}
-            className={classes.SortButton}
-          >
-            Сортировать по Выполненным
-          </button>
-          <button
-            onClick={() => sortOrders("processing")}
-            className={classes.SortButton}
-          >
-            Сортировать по В обработке
-          </button>
-        </div>
-      ) : null}
+        <>
+          <div className={classes.ButtonsContainer}>
+            <button
+              onClick={() => sortOrders("def")}
+              className={classes.SortButton}
+            >
+              Посмотерть все
+            </button>
+            <button
+              onClick={() => sortOrders("newest")}
+              className={classes.SortButton}
+            >
+              Сортировать по новым
+            </button>
+            <button
+              onClick={() => sortOrders("oldest")}
+              className={classes.SortButton}
+            >
+              Сортировать по старым
+            </button>
+            <button
+              onClick={() => sortOrders("awaiting")}
+              className={classes.SortButton}
+            >
+              Сортировать по Ожиданию
+            </button>
+            <button
+              onClick={() => sortOrders("completed")}
+              className={classes.SortButton}
+            >
+              Сортировать по Выполненным
+            </button>
+            <button
+              onClick={() => sortOrders("processing")}
+              className={classes.SortButton}
+            >
+              Сортировать по В обработке
+            </button>
+          </div>
 
-      {/* Отображение заказов */}
-      <div className={classes.tableContainer}>
-        <div className={classes.bookTable}>
-          <section>
-            <ul className={classes.th}>
-              <li>Автор</li>
-              <li>Назв-е книги</li>
-              <li>Кол-во книг</li>
-              <li>статус</li>
-              <li>заказчик</li>
-              <li>телефон</li>
-              <li>взял</li>
-              <li>вернет</li>
-              <li>Действия</li>
-            </ul>
-          </section>
+          <div className={classes.tableContainer}>
+            <div className={classes.bookTable}>
+              <section>
+                <ul className={classes.th}>
+                  <li>Автор</li>
+                  <li>Назв-е книги</li>
+                  <li>Кол-во книг</li>
+                  <li>статус</li>
+                  <li>заказчик</li>
+                  <li>телефон</li>
+                  <li>взял</li>
+                  <li>вернет</li>
+                  <li>Действия</li>
+                </ul>
+              </section>
+              {orders.map((item, id) => (
+                <div key={id}>
+                  <BasketCard item={item} fetchBook={fetchBook} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
           {orders.map((item, id) => (
             <div key={id}>
               <BasketCard item={item} fetchBook={fetchBook} />
             </div>
           ))}
-        </div>
-      </div>
+        </>
+      )}
+
+      {/* Отображение заказов */}
     </div>
   );
 }
