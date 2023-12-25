@@ -6,17 +6,22 @@ import classes from "./Basket.module.scss";
 import { header } from "../../store/header";
 
 export default function Basket() {
+  // Состояния для хранения списка заказов и изначального списка заказов
   const [orders, setOrders] = useState([]);
+  const [initialOrders, setInitialOrders] = useState([]);
 
+  // Функция для получения списка заказов с сервера
   async function fetchOrders() {
     try {
       const response = await axios.get(api + "/order/all", header);
       setOrders(response.data);
+      setInitialOrders(response.data); // Сохранение изначального списка
     } catch (e) {
       console.log(e.message);
     }
   }
 
+  // Функция для получения информации о книге по её ID
   async function fetchBook(id) {
     try {
       const res = await axios.get(api + "/book/" + id, header);
@@ -27,11 +32,12 @@ export default function Basket() {
     }
   }
 
+  // Загрузка списка заказов после загрузки компонента
   useEffect(() => {
     fetchOrders();
   }, []);
 
-  // Функция для сортировки заказов
+  // Функция для сортировки заказов по различным критериям (новизна, статусы)
   const sortOrders = (criteria) => {
     switch (criteria) {
       case "newest":
@@ -40,8 +46,35 @@ export default function Basket() {
       case "oldest":
         setOrders([...orders].sort((a, b) => a.id - b.id));
         break;
+      case "awaiting":
+        setOrders(
+          [...initialOrders].filter(
+            (order) => order.status === "Ожидает проверки"
+          )
+        );
+        break;
+      case "completed":
+        setOrders(
+          [...initialOrders].filter((order) => order.status === "Выполнен")
+        );
+        break;
+      case "processing":
+        setOrders(
+          [...initialOrders].filter((order) => order.status === "В обработке")
+        );
+        break;
+
+      case "def":
+        setOrders(
+          [...initialOrders].filter(
+            (order) =>
+              order.status === "В обработке" ||
+              order.status === "Выполнен" ||
+              order.status === "Ожидает проверки"
+          )
+        );
       default:
-        setOrders([...orders]);
+        setOrders([...initialOrders]);
         break;
     }
   };
@@ -49,11 +82,49 @@ export default function Basket() {
   return (
     <div className={classes.Basket}>
       <span>Basket</span>
-      <button onClick={() => sortOrders("newest")}>Сортировать по новым</button>
-      <button onClick={() => sortOrders("oldest")}>
-        Сортировать по старым
-      </button>
+      {/* Кнопки для сортировки */}
+      {JSON.parse(localStorage.getItem("user")).role == "Librarian" ? (
+        <div className={classes.ButtonsContainer}>
+          <button
+            onClick={() => sortOrders("def")}
+            className={classes.SortButton}
+          >
+            Посмотерть все
+          </button>
+          <button
+            onClick={() => sortOrders("newest")}
+            className={classes.SortButton}
+          >
+            Сортировать по новым
+          </button>
+          <button
+            onClick={() => sortOrders("oldest")}
+            className={classes.SortButton}
+          >
+            Сортировать по старым
+          </button>
+          <button
+            onClick={() => sortOrders("awaiting")}
+            className={classes.SortButton}
+          >
+            Сортировать по Ожиданию
+          </button>
+          <button
+            onClick={() => sortOrders("completed")}
+            className={classes.SortButton}
+          >
+            Сортировать по Выполненным
+          </button>
+          <button
+            onClick={() => sortOrders("processing")}
+            className={classes.SortButton}
+          >
+            Сортировать по В обработке
+          </button>
+        </div>
+      ) : null}
 
+      {/* Отображение заказов */}
       {orders.map((item, id) => (
         <div key={id}>
           <BasketCard item={item} fetchBook={fetchBook} />

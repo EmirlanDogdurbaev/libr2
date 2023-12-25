@@ -8,3 +8,37 @@
 }
 
 
+/* Basket.module.scss */
+
+/* Define styles for the Buttons Container */
+.ButtonsContainer {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Define styles for the Sort Button */
+.SortButton {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #fff;
+  background-color: #0073b1;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #005f91;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0073b1;
+  }
+}
