@@ -15,15 +15,9 @@ export default function BookForm() {
   const [author, setAuthor] = useState(""); // Add author state
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState("asa");
-
-  const [number, setNumber] = useState(0); // Add author state
-
-  const [inventNumber, setInventNumber] = useState(0);
   const [file, setFile] = useState(null);
-
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [year, setYear] = useState("");
-
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
 
@@ -76,10 +70,7 @@ export default function BookForm() {
     setPrice(e.target.value);
   };
 
-  const handleNumberChange = (e) => {
-    setNumber(e.target.value);
-  };
-
+ 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
@@ -96,9 +87,7 @@ export default function BookForm() {
     setQuantity(parseInt(e.target.value, 10));
   };
 
-  const InventNumberChange = (e) => {
-    setInventNumber(parseInt(e.target.value, 10));
-  };
+ 
 
   const handleAuthorChange = (e) => {
     setAuthor(e.target.value);
@@ -120,7 +109,6 @@ export default function BookForm() {
     formData.append("edition_year", year);
     formData.append("purchase_price", price);
     formData.append("purchase_time", time);
-    formData.append("inventory_number", inventNumber);
 
     try {
       const res = await axios.post(`${api}/book/create`, formData, header);
@@ -197,13 +185,7 @@ export default function BookForm() {
         options={data}
         onChange={handleLanguageChange}
       />
-      <label htmlFor="invent-number">Инвентарный номер</label>
-      <input
-        type="number"
-        id="invent-number"
-        value={inventNumber}
-        onChange={InventNumberChange}
-      />
+     
       <label htmlFor="quantity">Количество</label>
       <input
         type="number"
