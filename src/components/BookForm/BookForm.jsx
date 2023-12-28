@@ -12,7 +12,7 @@ export default function BookForm() {
   const [image, setImage] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
-  const [author, setAuthor] = useState(""); // Add author state
+  const [author, setAuthor] = useState("");
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState("asa");
   const [file, setFile] = useState(null);
@@ -20,10 +20,17 @@ export default function BookForm() {
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
   const [time, setTime] = useState("");
-
+  const [showAddCategoryField, setShowAddCategoryField] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(""); // Состояние для выбранного идентификатора категории
+  const [categoryValue, setCategoryValue] = useState("");
+  const [subCategoryValue, setSubCategoryValue] = useState("");
+  const [categoryAdd, setCategoryAdd] = useState(true);
+  const [test, setTest] = useState(true);
+  const handleCategoryChange = (selectedOption) => {
+    setSelectedCategoryId(selectedOption.value);
+  };
   const languages = ["Кыргызский", "Русский", "Английский", "Немецкий"];
-
-  const data = languages.map((item, index) => ({
+  const data = languages.map((item) => ({
     label: item,
     value: item,
   }));
@@ -70,7 +77,6 @@ export default function BookForm() {
     setPrice(e.target.value);
   };
 
- 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
@@ -87,15 +93,14 @@ export default function BookForm() {
     setQuantity(parseInt(e.target.value, 10));
   };
 
- 
-
   const handleAuthorChange = (e) => {
     setAuthor(e.target.value);
   };
-
+  const handleSubCategoryChange = (e) => {
+    setSubCategoryValue(e.target.value);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(image);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -113,6 +118,7 @@ export default function BookForm() {
     try {
       const res = await axios.post(`${api}/book/create`, formData, header);
       console.log(res.data);
+      // Очистка полей формы после отправки
       setTitle("");
       setDescription("");
       setImage(null);
@@ -123,13 +129,52 @@ export default function BookForm() {
       setYear("");
       setPrice("");
       setTime("");
-      setInventNumber(0);
       setFile(null);
     } catch (e) {
       console.log(e.message);
     }
   };
 
+  const handleSubmitCategory = async (e) => {
+    e.preventDefault();
+    try {
+      const category = await axios.post(
+        `${api}/category/create`,
+        { title: categoryValue },
+        header
+      );
+      console.log(category.data);
+      setCategoryValue("");
+      setShowAddCategoryField(false);
+      fetchCategories(); // Обновляем список категорий после добавления новой
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmitSubCategory = async (e) => {
+    e.preventDefault();
+    try {
+      const subcategory = await axios.post(
+        `${api}/subcategory/create`,
+        {
+          category: selectedCategoryId, // Используем идентификатор выбранной категории
+          title: subCategoryValue,
+        },
+        header
+      );
+      console.log(subcategory.data);
+      setSubCategoryValue("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCategoryChange2 = (selectedOption) => {
+    setCategory(selectedOption.value); // Обновление выбранной категории
+  };
+
+  // Другие функции для работы с категориями и подкатегориями
   return (
     <form
       className={classes.BookForm}
@@ -167,25 +212,91 @@ export default function BookForm() {
         onChange={handleFileChange}
       />
 
-      <label htmlFor="category">Категория </label>
-      <Select
-        placeholder="Категории"
-        options={categories}
-        onChange={(e) => setCategory(e.value)}
-      />
-      <label htmlFor="category">Подкатегория </label>
-      <Select
-        placeholder="Под Категория"
-        options={subcategories}
-        onChange={(e) => setSubcategories(e.value)}
-      />
+      <div>
+        {/* Форма для добавления категории */}
+        <div>
+          <div>
+            {categoryAdd ? (
+              <>
+                <label htmlFor="category">Категория </label>
+                <Select
+                  placeholder="Категории"
+                  options={categories}
+                  onChange={handleCategoryChange2}
+                />
+                <button onClick={() => setCategoryAdd(false)}>
+                  Добавить категорию
+                </button>
+              </>
+            ) : (
+              <div className={classes.CategoryForm}>
+                <label htmlFor="categoryTitle">Название категории</label>
+                <input
+                  type="text"
+                  id="categoryTitle"
+                  value={categoryValue}
+                  onChange={(e) => setCategoryValue(e.target.value)}
+                />
+                <button
+                  onClick={handleSubmitCategory}
+                  style={{ marginRight: "10px" }}
+                >
+                  Добавить категорию
+                </button>
+                <button onClick={() => setCategoryAdd(true)}>готово</button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Форма для добавления подкатегории */}
+        <div>
+          {test ? (
+            <>
+              <label htmlFor="category">Подкатегория </label>
+              <Select
+                placeholder="Подкатегория"
+                options={subcategories}
+                onChange={(e) => setSubcategories(e.value)}
+              />
+              <button onClick={() => setTest(false)}>
+                Добавить подкатегорию
+              </button>
+            </>
+          ) : (
+            <>
+              <label htmlFor="category">Категория </label>
+              <Select
+                placeholder="Категории"
+                options={categories}
+                onChange={handleCategoryChange}
+              />
+
+              <div>
+                <label htmlFor="subcategoryTitle">Название подкатегории</label>
+                <input
+                  type="text"
+                  id="subcategoryTitle"
+                  value={subCategoryValue}
+                  onChange={handleSubCategoryChange}
+                />
+                <button onClick={handleSubmitSubCategory}>
+                  Добавить подкатегорию
+                </button>
+                <button onClick={() => setTest(true)}>готово</button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
       <label htmlFor="category">Язык </label>
       <Select
         placeholder="Язык"
         options={data}
         onChange={handleLanguageChange}
       />
-     
+
       <label htmlFor="quantity">Количество</label>
       <input
         type="number"
