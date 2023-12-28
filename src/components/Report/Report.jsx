@@ -4,9 +4,11 @@ import { api } from "../../store/api";
 import classes from "./Report.module.scss"; // Подключение модульного SCSS
 
 const Report = () => {
+  // Состояния компонента
   const [reportType, setReportType] = useState([]);
   const [selectedReport, setSelectedReport] = useState("");
 
+  // Получение данных об отчетах при загрузке компонента
   useEffect(() => {
     axios
       .get(`${api}/book/report/all`, {
@@ -20,12 +22,14 @@ const Report = () => {
       });
   }, []);
 
+  // Создание опций для выпадающего списка с отчетами
   const rep = reportType.map((item) => (
     <option key={item.id} value={item.id}>
       {item.name}
     </option>
   ));
 
+  // Функция для скачивания отчета
   async function getReport(event) {
     event.preventDefault();
 
@@ -47,6 +51,7 @@ const Report = () => {
     }
   }
 
+  // Функция для отправки данных на сервер
   const postData = async () => {
     try {
       const url = `${api}/book/report/create`;
@@ -59,6 +64,8 @@ const Report = () => {
         }
       );
       console.log("Ответ сервера:", response.data);
+      window.location.reload();
+
       // здесь вы можете обработать ответ сервера или выполнить другие действия
     } catch (error) {
       console.error("Ошибка при выполнении запроса:", error);
@@ -68,6 +75,7 @@ const Report = () => {
 
   return (
     <section className={classes.main}>
+      {/* Форма для скачивания отчета */}
       <form method="get" onSubmit={getReport} className={classes.Report}>
         <div className={classes.label}>
           <label htmlFor="reports">Отчеты</label>
@@ -75,12 +83,12 @@ const Report = () => {
             <select onChange={(e) => setSelectedReport(e.target.value)}>
               {rep}
             </select>
-
             <button type="submit">Скачать</button>
           </div>
         </div>
       </form>
 
+      {/* Кнопка для отправки данных на сервер */}
       <div className={classes.right}>
         <button onClick={postData}>Создать</button>
       </div>
