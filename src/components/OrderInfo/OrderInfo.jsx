@@ -3,6 +3,7 @@ import { api } from "../../store/api";
 import { header } from "../../store/header";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Button from "../Button/Button";
 
 const OrderInfo = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const OrderInfo = () => {
       .get(`${api}/order/${id}`, header)
       .then((response) => {
         setData(response.data);
-        setData2(response.data.books[0]);
+        setData2(response.data.book[0]);
       })
       .catch((error) => {
         console.error("Ошибка при получении данных:", error);

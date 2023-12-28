@@ -4,6 +4,7 @@ import { api } from "../../store/api";
 import BasketCard from "../../components/BasketCard/BasketCard";
 import classes from "./Basket.module.scss";
 import { header } from "../../store/header";
+import Report from "../../components/Report/Report";
 
 export default function Basket() {
   // Состояния для хранения списка заказов и изначального списка заказов
@@ -79,12 +80,51 @@ export default function Basket() {
     }
   };
 
+  const postData = async () => {
+    try {
+      const url = `${api}/book/report/create`;
+
+      const response = await axios.post(
+        url,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      console.log("Ответ сервера:", response.data);
+      // здесь вы можете обработать ответ сервера или выполнить другие действия
+    } catch (error) {
+      console.error("Ошибка при выполнении запроса:", error);
+      // здесь обрабатывайте ошибки, если они возникли
+    }
+  };
+
+  async function repAll() {
+    try {
+      const url = `${api}/book/report/all`;
+      const headers = {
+        // Здесь вам нужно указать необходимые заголовки, если они требуются для аутентификации или других целей
+        // Например:
+        Authorization: "Bearer ваш_токен_доступа",
+        // другие заголовки, если необходимо
+      };
+
+      const res = await axios.get(url, { headers });
+      return res.data;
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
+
+
   return (
     <div className={classes.Basket}>
       <span>Страница запросов на книги</span>
-      {/* Кнопки для сортировки */}
+
       {JSON.parse(localStorage.getItem("user")).role == "Librarian" ? (
         <>
+         <Report/>
           <div className={classes.ButtonsContainer}>
             <button
               onClick={() => sortOrders("def")}
@@ -144,6 +184,12 @@ export default function Basket() {
                   <BasketCard item={item} fetchBook={fetchBook} />
                 </div>
               ))}
+
+              <button onClick={postData}>
+                скачать отчеты о всех книгах которые есть в библиотеке
+              </button>
+
+              <button onClick={repAll}>библиотеке</button>
             </div>
           </div>
         </>
