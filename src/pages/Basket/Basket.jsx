@@ -80,24 +80,7 @@ export default function Basket() {
     }
   };
 
-  const postData = async () => {
-    try {
-      const url = `${api}/book/report/create`;
 
-      const response = await axios.post(
-        url,
-        {},
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      console.log("Ответ сервера:", response.data);
-      // здесь вы можете обработать ответ сервера или выполнить другие действия
-    } catch (error) {
-      console.error("Ошибка при выполнении запроса:", error);
-      // здесь обрабатывайте ошибки, если они возникли
-    }
-  };
 
   async function repAll() {
     try {
@@ -117,14 +100,13 @@ export default function Basket() {
     }
   }
 
-
   return (
     <div className={classes.Basket}>
       <span>Страница запросов на книги</span>
 
       {JSON.parse(localStorage.getItem("user")).role == "Librarian" ? (
         <>
-         <Report/>
+          <Report />
           <div className={classes.ButtonsContainer}>
             <button
               onClick={() => sortOrders("def")}
@@ -184,12 +166,7 @@ export default function Basket() {
                   <BasketCard item={item} fetchBook={fetchBook} />
                 </div>
               ))}
-
-              <button onClick={postData}>
-                скачать отчеты о всех книгах которые есть в библиотеке
-              </button>
-
-              <button onClick={repAll}>библиотеке</button>
+            
             </div>
           </div>
         </>

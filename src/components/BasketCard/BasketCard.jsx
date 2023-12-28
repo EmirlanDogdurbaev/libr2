@@ -10,26 +10,23 @@ export default function BasketCard({ item, fetchBook }) {
   const [book, setBook] = useState({});
   const [isLiber, setIsLiber] = useState(false);
 
-  const options = { day: "numeric", monli: "long" };
-  const date = new Date(item.due_time);
-  const currenliate = new Date();
-
   useEffect(() => {
     setIsLiber(JSON.parse(localStorage.getItem("user")).role === "Librarian");
     async function fetchData() {
-      const bookData = await fetchBook(item.books[0]);
+      const bookData = await fetchBook(item.book);
       setBook(bookData || {});
     }
     fetchData();
-  }, [item.books, fetchBook]);
+  }, [item.book, fetchBook]);
 
   async function rejectedOrder() {
     try {
       const res = await axios.patch(
         api + `/order/${item.id}`,
-        { status: "Ошибка" },
+        { status: "Отклонено" },
         header
       );
+      window.location.reload();
     } catch (e) {
       console.log(e.message);
     }

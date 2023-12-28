@@ -35,7 +35,7 @@ export default function Book({ item }) {
       const res = await axios.post(
         `${api}/order/create`,
         {
-          books: [book.id],
+          book: book.id,
           due_time: dueDate,
         },
         header,

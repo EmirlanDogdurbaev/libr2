@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: flex-start;
+  margin: 0 auto;
+  gap: 20px;
+  height: 100px;
+  /* Report.module.scss */
+  overflow: hidden;
+
+  .Report {
+    display: flex;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    height: 100%;
+
+    > .label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      > div {
+        display: flex;
+        align-items: flex-start;
+
+        gap: 20px;
+        select {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 600px;
+          margin-bottom: 16px;
+          font-size: 16px;
+        }
+
+        button {
+          padding: 10px 20px;
+          background-color: #0a66c2;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+
+          &:hover {
+            background-color: #0d5cb6;
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    height: 20px;
+    button {
+      margin-top: -1px;
+      padding: 10px 20px;
+      background-color: #0ac275;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+}
