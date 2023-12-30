@@ -15,7 +15,7 @@ function ProfileBookCard({ data, fetchBook }) {
       : Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   useEffect(() => {
     async function fetchData() {
-      const bookData = await fetchBook(data.books[0]);
+      const bookData = await fetchBook(data.book);
       setBook(bookData || {});
     }
     fetchData();

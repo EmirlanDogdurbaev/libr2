@@ -1,5 +1,3 @@
-
-
 .tbody {
   width: 90%;
   margin: 0 auto;
@@ -18,20 +16,36 @@
       font-size: 16px;
       font-weight: 500;
 
-      > .confirm_block{
+      > .confirm_block {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        >.Button{
-          padding: 5px 8px ;
+        > .Button {
+          padding: 5px 8px;
           background-color: #0073b1;
           border-radius: 5px;
           border: none;
 
           color: white;
-
         }
       }
+    }
+  }
+}
+
+.BasketCard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+
+  .cont {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .left {
+      display: flex;
     }
   }
 }

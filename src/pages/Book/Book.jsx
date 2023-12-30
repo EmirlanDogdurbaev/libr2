@@ -59,16 +59,14 @@ export default function Book({ item }) {
       );
       window.location.reload();
       console.log(res.data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   }
 
   useEffect(() => {
     fetchBook();
     fetchReviews();
-    sendReview();
-    orderBook();
   }, []);
 
   const handleDownload = () => {

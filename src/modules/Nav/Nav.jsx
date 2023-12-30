@@ -18,19 +18,19 @@ const Nav = (props) => {
         <li>
           <NavItem to={"/"}>
             {" "}
-            <img src={icon1} alt="" /> home
+            <img src={icon1} alt="" />Главная
           </NavItem>
         </li>
         <li>
           <NavItem to={"/profile"}>
             {" "}
-            <img src={user} alt="" /> profile
+            <img src={user} alt="" /> Профиль
           </NavItem>
         </li>
         <li>
           <NavItem to={"/catalog"}>
-            {" "}
-            <img src={catalog} alt="" /> catalog
+       
+            <img src={catalog} alt="" /> Каталог
           </NavItem>
         </li>
         {JSON.parse(localStorage.getItem("user")).role !== "Librarian" ? (
@@ -38,7 +38,7 @@ const Nav = (props) => {
             <NavItem to={"/basket"}>
               {" "}
               <img src={icon1} alt="" />
-              basket
+              Корзина
             </NavItem>
           </li>
         ) : (
@@ -47,14 +47,14 @@ const Nav = (props) => {
               <NavItem to={"/basket"}>
                 {" "}
                 <img src={icon1} alt="" />
-                orders
+                Заказы
               </NavItem>
             </li>
             <li>
               <NavItem to={"/new-book"}>
                 {" "}
                 <img src={icon1} alt="" />
-                new book
+                Новая книга
               </NavItem>
             </li>
           </>

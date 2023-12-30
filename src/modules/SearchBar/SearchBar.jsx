@@ -33,12 +33,12 @@ const SearchBar = (props) => {
         <form action="#" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
-            placeholder="search for something... "
+            placeholder="искать что-то... "
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onClick={() => navigate('/catalog')}
           />
-          <button onClick={submitSearch}>search </button>
+          <button onClick={submitSearch}>Поиск </button>
         </form>
 
         {location.pathname === '/catalog' ? (
