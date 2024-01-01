@@ -114,7 +114,7 @@ export default function BasketCard({ item, fetchBook }) {
               {item.status === "Ожидает проверки" ||
               item.status === "В обработке" ? (
                 <section className={styles.btn_section}>
-                  <Button action={cancel}>Отменить</Button>
+                  <Button action={cancel}>Отменить бронь</Button>
                 </section>
               ) : null}
             </div>
