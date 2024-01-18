@@ -22,9 +22,10 @@ const Report = () => {
       });
   }, []);
 
+  console.log(reportType)
   // Создание опций для выпадающего списка с отчетами
   const rep = reportType.map((item) => (
-    <option key={item.id} value={item.id}>
+    <option key={item.id} value={item.name}>
       {item.name}
     </option>
   ));
@@ -55,7 +56,6 @@ const Report = () => {
   const postData = async () => {
     try {
       const url = `${api}/book/report/create`;
-
       const response = await axios.post(
         url,
         {},
