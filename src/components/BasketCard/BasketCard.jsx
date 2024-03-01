@@ -110,8 +110,8 @@ export default function BasketCard({ item, fetchBook }) {
         </div>
       ) : (
         <div className={styles.BasketCard}>
-          <div>
-            <div>{item.status}</div>
+          <div className={styles.BasketWrap}>
+            <div>Статус: <b> {item.status}</b></div>
             <div className={styles.confirm_block}>
               {item.status === "Ожидает проверки" ||
               item.status === "В обработке" ? (

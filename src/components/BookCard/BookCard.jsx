@@ -11,9 +11,6 @@ export default function BookCard({ data }) {
       <div className={classes.info}>
         <h3>{data.title}</h3>
         <span>{data.author}</span>
-        <div className={classes.rating}>
-          <Stars amount={data.rating} />
-        </div>
         {location.pathname !== '/basket' ? (
           <>
             <small>В наличии: {data.quantity}</small>

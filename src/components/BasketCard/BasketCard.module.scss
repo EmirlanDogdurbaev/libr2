@@ -37,6 +37,17 @@
   display: flex;
   justify-content: center;
   width: 100%;
+
+  .BasketWrap{
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-around;
+    height: 230px;
+    padding: 30px;
+    margin: 10px;
+    border: 2px solid gray;
+    border-radius: 20px;
+  }
   
 
   .cont {

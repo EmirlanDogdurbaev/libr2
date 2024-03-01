@@ -97,28 +97,7 @@ export default function Book({ item }) {
             </div>
           </div>
         </article>
-        <div className={cl.CommentBtn}>
-          <form onSubmit={(e) => sendReview(e)}>
-            <label htmlFor="comment">
-              На сколько это книга вам понравилось?
-            </label>
-            <Stars
-              amount={0}
-              book={book}
-              clickable={true}
-              setGrade={setGrade}
-            />
-            <textarea
-              type="text"
-              id="comment"
-              placeholder="comment"
-              className={cl.body}
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button>Отправить</button>
-          </form>
-        </div>
-        <h3 className={cl.response}>Отзывы</h3>
+        
         <div className={cl.comment_cont}>
           {comments.map((i, id) => {
             return (

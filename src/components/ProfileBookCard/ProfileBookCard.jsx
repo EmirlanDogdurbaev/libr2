@@ -36,7 +36,6 @@ function ProfileBookCard({ data, fetchBook }) {
         <div className={classes.desc}>
           <h3>{book.title}</h3>
           <p>{book.author}</p>
-          <Stars amount={book.rating} />
         </div>
         <img src={book.image} alt="book image" />
       </div>
