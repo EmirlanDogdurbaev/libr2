@@ -19,7 +19,7 @@
       align-items: center;
 
       input {
-        width: clamp(550px, 600px, 700px);
+        width: clamp(450px, 600px, 700px);
         height: 40px;
         padding: 10px 20px;
         outline: none;
@@ -70,6 +70,17 @@
   }
 }
 
+@media screen and (max-width:1400px){
+  .SearchBar{
+    >div{
+      >form{
+        >.inp{
+          width: 450px !important;
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 1150px) {
   .SearchBar {
     div {

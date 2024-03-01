@@ -37,6 +37,7 @@ const SearchBar = (props) => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onClick={() => navigate('/catalog')}
+            className={styles.inp}
           />
           <button onClick={submitSearch}>Поиск </button>
         </form>
